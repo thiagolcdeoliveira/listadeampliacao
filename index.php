@@ -34,9 +34,10 @@ echo "</pre>";
 							<th>Renda Per Capita</th>
 
 							<th>Código</th>
-							<th>Turma</th>
+							
 							<th>Horário Atual</th>
 							<th>Horário Desejado</th>
+							<th>Turma</th>
 							<th>Responsavel</th>
 							<th>CEIs Desejados</th>
 							<th>Status</th>
@@ -48,9 +49,10 @@ echo "</pre>";
 						<th>Data Inscrição</th>
 						<th>Renda Per Capita</th>
 							<th>Código</th>
-							<th>Turma</th>
 							<th>Horário Atual</th>
 							<th>Horário Desejado</th>
+							<th>Turma</th>
+
 							<th>Responsavel</th>
 							<th>CEIs Desejados</th>
 							<th>Status</th>

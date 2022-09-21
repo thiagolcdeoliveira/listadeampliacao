@@ -383,7 +383,7 @@ class Crianca implements InterfaceCrianca {
 				$horario_atual = "7h às 13h";
 				break;
 			case 2:
-				$horario_atual =  "Branca de Neve";
+				$horario_atual =  "12h às 18h";
 				break;
 			default:
 				$horario_atual =  "---";
