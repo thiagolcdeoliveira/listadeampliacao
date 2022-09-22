@@ -57,8 +57,8 @@ $crud = new CrudCrianca($conn, $crianca1);
 						</tr>
 					</tfoot>
 					<tbody>
-					<?php if  (isset($_SESSION['u'])){ ?>		
-					<?php foreach ($crud->list() as $key => $value){   ?>
+					<?php if  (isset($_SESSION['u']) and isset($_SESSION['c'])){ ?>		
+					<?php foreach ($crud->list($_SESSION['c']) as $key => $value){   ?>
 						<tr>
 						    <td><?php echo $value->getId() ?> </td>
 							<td><?php echo $value->getDataCad()  ?></td>

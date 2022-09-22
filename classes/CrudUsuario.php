@@ -60,7 +60,8 @@ class CrudUsuario {
 		$value = $value[0];
 		//print_r ($value);
 		$value["id"] = intval($value["id"]);
-		$usuario->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setCpf($value["cpf"])->setStatus($value["status"]);
+		$usuario->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->
+		setCpf($value["cpf"])->setCei($value["cei"])->setStatus($value["status"]);
 		}
 		return $usuario;
 	}

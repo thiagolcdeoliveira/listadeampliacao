@@ -198,7 +198,7 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a href="/" class="item active">Home</a>
+        <a href="/?cei=<?php echo $cei_cod ?>" class="item active">Home</a>
         <a href="/register.php?cei=<?php echo $cei_cod ?>" class="item">Cadastro</a>
        <?php  if  (isset($_SESSION['u'])){ ?>
         <a href="/lista_coordenacao.php?cei=<?php echo $cei_cod ?>" class="item">Lista Detalhada</a>
@@ -214,7 +214,20 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
 
     <div class="ui text container ">
       <h1 class="ui inverted header sem-top">
-        Lista de Ampliação <?php echo $cei_nome ?>
+        Lista de Ampliação 
+        <?php if  (isset($_SESSION['u']) and isset($_SESSION['c'])){ 
+          require_once "classes/cei.php";
+          $cei_object = new Cei;
+        
+          $cei_nome = $cei_object->getNomeCei($_SESSION['c']);
+          
+          echo $cei_nome 
+          ?>		
+          
+          <?php } else { ?>		
+            <?php echo $cei_nome ?>
+            <?php }  ?>		
+        
       </h1>
       <h2 class="ui text-banner " ></h2>
       <a href="/register.php?cei=<?php echo $cei_cod ?>" class="ui huge  button">Cadastre sua criança<i class="right arrow icon"></i></a>

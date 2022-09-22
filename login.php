@@ -21,7 +21,7 @@ if (!empty($_POST)){
           
           $senha = md5($_POST["senha"]."42");
           $senha = hash('ripemd160', $senha."42");
-         // echo $senha;
+         echo $senha;
       if (!empty($email) and !empty($senha) ){
         $usuario = new Usuario;
         $usuariocrud = new CrudUsuario($conn, $usuario);
@@ -29,8 +29,10 @@ if (!empty($_POST)){
         $login = $usuariocrud->validalogin($email,$senha);
         //print_r($usuario);
         if (!empty($login->getId())){
-        $_SESSION['u'] = $login->getId();
-        header('Location: lista_coordenacao.php');
+          $_SESSION['u'] = $login->getId();
+          $_SESSION['c'] = $login->getCei();
+          $cei_cod = $login->getCei();
+          header('Location: lista_coordenacao.php?cei='.$cei_cod);
         }else{
          
         $erro =  "erro!";

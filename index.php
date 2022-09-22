@@ -59,11 +59,12 @@ echo "</pre>";
 						</tr>
 					</tfoot>
 					<tbody>
-					<?php if ($cei_cod>0){
+					<?php
+					 //if ($cei_cod>0){
 							$lista = $crud->listAtivosPorCei($cei_cod);
-					}else{
-							$lista = $crud->listAtivos();
-					}
+				//	}else{
+					//		$lista = $crud->listAtivos();
+				//	}
 					   ?>
 
 					<?php foreach ($lista as $key => $value){   ?>

@@ -11,7 +11,7 @@ class Usuario implements InterfaceUsuario {
 	private $senha;
 	private $cpf;
 	private $status;
-
+	private $cei;
 
 
 
@@ -67,6 +67,12 @@ class Usuario implements InterfaceUsuario {
 	}
 
 
+	public function setCei($cei){
+		$this->cei = $cei;
+		return $this;
+
+	}
+
 
 
 
@@ -109,6 +115,11 @@ class Usuario implements InterfaceUsuario {
 
 	}
 
+	public function getCei(){
+		return $this->cei;
+
+
+	}
 
 
 	

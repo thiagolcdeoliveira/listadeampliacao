@@ -113,17 +113,23 @@ class CrudCrianca {
 	}
 
     
-	public function list(){
+	public function list($value=0){
+		$filtro='';
+		if ($value > 0 ) {
+           $filtro = " and cei=".$value;
+		}
 		$sql = "SELECT * FROM `crianca` ";
 		$sql = "select *, CASE turma
-		WHEN '0'     THEN     'Berçário 1'
+		WHEN '5'     THEN     'Berçário 1'
 		WHEN '1'     THEN     'Berçário 2'
 		WHEN '2'     THEN     'Maternal'
 		WHEN '3'     THEN     'Jardim'
 		WHEN '4'     THEN     'Pré 1'
-		WHEN '5'     THEN     'Berçário 1'
+		WHEN '0'     THEN     'Berçário 1'
 		ELSE 'erro' END as turma
-        from crianca ";
+        from crianca where ativo = 1 
+		 $filtro order by percapita";
+		//echo $sql;
 		$stmt = $this->banco->prepare($sql);
 		$stmt->execute();
 		$arraycrianca = array();
@@ -131,9 +137,10 @@ class CrudCrianca {
 		foreach ( $stmt->fetchAll(PDO::FETCH_ASSOC) as $value){
 			$crianca = new Crianca();
 			$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
-			setCei($value["cei"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
+			setCei($value["cei"])->setHorarioAtual($value["horario_atual"])->setHorarioDesejado($value["horario_desejado"])->
+			setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
 			setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
-			setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"])->setMotivo($value["motivo_desativado"]);
+			setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
 			array_push($arraycrianca,$crianca);
 	    }
 		return $arraycrianca;
@@ -164,7 +171,11 @@ class CrudCrianca {
 	    }
 		return $arraycrianca;
 	}
-	public function listAtivosPorCei($value){
+	public function listAtivosPorCei($value=0){
+		$filtro='';
+		if ($value > 0 ) {
+           $filtro = " and cei=".$value;
+		}
 		$sql = "SELECT * FROM `crianca` ";
 		$sql = "select *, CASE turma
 		WHEN '5'     THEN     'Berçário 1'
@@ -175,7 +186,7 @@ class CrudCrianca {
 		WHEN '0'     THEN     'Berçário 1'
 		ELSE 'erro' END as turma
         from crianca where ativo = 1 
-		and cei = $value order by percapita";
+		 $filtro order by percapita";
 		//echo $sql;
 		$stmt = $this->banco->prepare($sql);
 		$stmt->execute();
