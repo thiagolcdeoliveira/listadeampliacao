@@ -1,5 +1,8 @@
 <?php require_once "header.php" ?>
-<?php if  (isset($_SESSION['u'])){  $id_usuario=$_SESSION['u']; ?>
+<?php if  (isset($_SESSION['u']) and isset($_SESSION['c'])){  $id_usuario=$_SESSION['u'];
+  $cei_cod=$_SESSION['c'];
+  
+  ?>
 
 
 
@@ -39,7 +42,7 @@ if (!empty($_GET)){
                               </div>
                               <ul class="list">
                                 <li> 
-                                <li>  <a href="/">Clique aqui para consultar a lista</a></li>
+                                <li>  <a href="lista_coordenacao.php?cei=<?php echo $cei_cod; ?>"" >Clique aqui para consultar a lista</a></li>
                               </ul>
                             </div>
 
