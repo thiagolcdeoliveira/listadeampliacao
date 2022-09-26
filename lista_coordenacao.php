@@ -79,7 +79,9 @@ $crud = new CrudCrianca($conn, $crianca1);
 
 								<?php }?>
 							</td>
-							<td><a href="delete.php?id=<?php echo $value->getId() ?>" > <i class="ui icon trash"></i> </td>
+							<td><a href="delete.php?id=<?php echo $value->getId() ?>" > <i class="ui icon trash"></i></a> 
+							<a href="confirme.php?id=<?php echo $value->getId() ?>" > <i class="ui icon question circle "></i> </a>
+						</td>
 						</tr>
 						<?php  } ?>
 					<?php } ?>	

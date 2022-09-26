@@ -79,11 +79,19 @@ echo "</pre>";
 							<td><?php echo $value->getNomeResponsavelMask()   ?></td>
 							<td><?php echo $value->getAllCeis()  ?></td>
 							<td>
-							<?php if ($value->getConfirmado()>0){  ?>
-									Documentação Conferida
-							<?php }else  { ?>
+							<?php if ($value->getConfirmado()==1){  ?>
+									Documentação Aprovada
+							<?php }else  { 
+								 if ($value->getConfirmado()==0){ ?>
 									Aguardando Conferência da Documentação
-							<?php   } ?>
+							<?php   } else{
+
+							?>
+								Documentação Negada:
+	<?php  echo $value->getMotivoNegado(); } } ?>
+
+
+
 						</td>
 						</tr>
 

@@ -20,8 +20,11 @@ if (!empty($_POST)){
            array_key_exists('renda', $_POST ) == 1  and 
            array_key_exists('membros', $_POST ) == 1  and 
            (array_key_exists('email', $_POST ) == 1  or 
-           array_key_exists('telefone', $_POST ) == 1    ) ){
-          $nome = $_POST["nome"];
+           array_key_exists('telefone', $_POST ) == 1   or 
+           array_key_exists('endereco', $_POST ) == 1  
+           ) ){
+            if($_POST["membros"]>0){
+            $nome = $_POST["nome"];
           $sobrenome = $_POST["sobrenome"]; 
           $turma = $_POST["turma"];
           $cei =  $_POST["cei"];
@@ -31,29 +34,25 @@ if (!empty($_POST)){
           $membros = $_POST["membros"];
           $horario_atual = $_POST["horarioAtual"];
           $horario_desejado = $_POST["horarioDesejado"];
-
-         // echo $horario_desejado;
           $percapita = $renda /  $membros;
-        //  echo $data_nasc;
-
-         // echo $turma;
-          //echo $cei;
-          $email = $_POST["email"];
+         // $email = $_POST["email"];
+          $endereco = $_POST["endereco"];
           $nome_resposanvel = $_POST["nome_responsavel"];
           $periodo = $_POST["periodo"];
       if (!empty($nome) and !empty($sobrenome) and !empty($turma) and !empty($cei) and  !empty($cpf)) {
           $crianca1 = new Crianca;
           $crianca1->setNome($nome)->setSobrenome($sobrenome)->setTurma($turma)->setCei($cei)->
-          setCpf($cpf)->setDataNasc($data_nasc)->setEmail($email)->setNomeResponsavel($nome_resposanvel)->
-          setHorarioAtual($horario_atual)->setHorarioDesejado($horario_desejado)->setPerCapita($percapita)->
+          setCpf($cpf)->setRenda($renda)->setMembros($membros)->setDataNasc($data_nasc)->setNomeResponsavel($nome_resposanvel)->
+          setEndereco($endereco)->setHorarioAtual($horario_atual)->setHorarioDesejado($horario_desejado)->setPerCapita($percapita)->
           setPeriodo($periodo)->setCodigoGerar();
           $crianca = new CrudCrianca($conn, $crianca1);
           $id = $crianca->save();
+      }
         }
-      }else {
+      }
+    }else {
     $erro = 1;
   }
-}
 ?>
                        
                            <?php   if  (!empty($id)) {?>
@@ -137,7 +136,7 @@ if (!empty($_POST)){
   <div class="field">
     <label>Endereço</label>
       <div class="field">
-          <input type="text"   name="email"  placeholder="Endereço" >
+          <input type="text"   name="endereco"  placeholder="Endereço" >
       </div>
   </div>       
   
@@ -262,7 +261,7 @@ if (!empty($_POST)){
                         </div>
           <div class="field">
           <label >Renda Familiar</label>
-          <input type="number" step="0.01" name="renda" min="0.01" placeholder="Renda Familiar">
+          <input type="number" step="0.01" name="renda" min="0.01" placeholder="Renda Familiar" required>
 
           </div>
           <div class="field">

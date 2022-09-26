@@ -26,9 +26,7 @@ if (!empty($_GET)){
           $crianca = new CrudCrianca($conn, $crianca1);
           $crianca->update();
           $sucesso="1";
-          }
-
-        
+          }   
         }
       }else {
     $erro = 1;

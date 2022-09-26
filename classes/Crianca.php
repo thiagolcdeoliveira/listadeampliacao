@@ -17,7 +17,11 @@ class Crianca implements InterfaceCrianca {
 	private $turma;
 	private $periodo;
 	private $cei;
+	private $motivo_negado;
+	private $endereco;
 	private $percapita;
+	private $renda;
+	private $membros;
 	private $confirmado;
 	private $horario_atual;
 	private $horario_desejado;
@@ -136,6 +140,31 @@ class Crianca implements InterfaceCrianca {
 
 	public function setCei($cei){
 		$this->cei = $cei;
+		return $this;
+
+
+	}
+	public function setMotivoNegado($motivo_negado){
+		$this->motivo_negado = $motivo_negado;
+		return $this;
+
+
+	}
+
+	public function setEndereco($endereco){
+		$this->endereco = $endereco;
+		return $this;
+
+
+	}
+	public function setRenda($renda){
+		$this->renda = $renda;
+		return $this;
+
+
+	}
+	public function setMembros($membros){
+		$this->membros = $membros;
 		return $this;
 
 
@@ -293,6 +322,30 @@ class Crianca implements InterfaceCrianca {
 
 	public function getCei(){
 		return $this->cei;
+
+
+	}
+
+	public function getMotivoNegado(){
+		return $this->motivo_negado;
+
+
+	}
+
+
+	public function getEndereco(){
+		return $this->endereco;
+
+
+	}
+
+	public function getRenda(){
+		return $this->renda;
+
+
+	}
+	public function getMembros(){
+		return $this->membros;
 
 
 	}

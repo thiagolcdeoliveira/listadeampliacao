@@ -19,12 +19,12 @@ class CrudCrianca {
 	public function save(){
 		if (!empty($this->crianca->getDataCad())){
 			
-		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`telefone`,`endereco`, `data_cad`, `data_nasc`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual` ) VALUES (:nome,:sobrenome,:codigo,:telefone,
-		:email,:data_cad,:data_nasc,:cpf,:nome_responsavel,:turma, :periodo,:cei,:percapita, :horario_atual, :horario_desejado)";
+		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`email`,`telefone`,`endereco`, `data_cad`, `data_nasc`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual`,`renda`,`membros` ) 
+		                        VALUES (:nome, :sobrenome, :codigo, :email, :telefone, :endereco, :data_cad,  :data_nasc,   :cpf, :nome_responsavel,  :turma,  :periodo, :cei,   :percapita,   :horario_desejado, :horario_atual, :renda, :membros)";
 
 		}else{
-		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`telefone`,`endereco`,  `data_nasc`,`data_cad`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual` ) VALUES (:nome,:sobrenome,:codigo,:telefone,
-		:email,:data_nasc, now() ,:cpf,:nome_responsavel,:turma, :periodo,:cei,:percapita, :horario_atual, :horario_desejado )";
+		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`email`, `telefone`,`endereco`,  `data_nasc`,`data_cad`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual`,`renda`,`membros` ) 
+		                       VALUES (:nome, :sobrenome,  :codigo, :email, :telefone, :endereco,  :data_nasc, now() ,     :cpf,  :nome_responsavel, :turma,  :periodo,  :cei,  :percapita,  :horario_desejado, :horario_atual,  :renda , :membros  )";
 		}
 		$stmt = $this->banco->prepare($sql);
 
@@ -33,6 +33,7 @@ class CrudCrianca {
 		$stmt->bindValue(':codigo', $this->crianca->getCodigo());
 		$stmt->bindValue(':telefone', $this->crianca->getTelefone());
 		$stmt->bindValue(':email', $this->crianca->getEmail());
+		$stmt->bindValue(':endereco', $this->crianca->getEndereco());
 		$stmt->bindValue(':data_nasc', $this->crianca->getdataNasc());
 		$stmt->bindValue(':cpf', $this->crianca->getCpf());
 		$stmt->bindValue(':nome_responsavel', $this->crianca->getNomeResponsavel());
@@ -42,7 +43,9 @@ class CrudCrianca {
 		$stmt->bindValue(':percapita', $this->crianca->getPerCapita());
 		$stmt->bindValue(':horario_atual', $this->crianca->getHorarioAtual());
 		$stmt->bindValue(':horario_desejado', $this->crianca->getHorarioDesejado());
-		//$stmt->bindValue(':confirmado', $this->crianca->getConfirmado());
+		$stmt->bindValue(':renda', $this->crianca->getRenda());
+		$stmt->bindValue(':membros', $this->crianca->getMembros());
+	//	$stmt->bindValue(':confirmado', 0);
 		if (!empty($this->crianca->getDataCad())){
 
 		$stmt->bindValue(':data_cad', $this->crianca->getDataCad());
@@ -111,6 +114,38 @@ class CrudCrianca {
 		}
 
 	}
+	public function updateStatus(){
+		//sei que não precisa validar. 		
+		$id = filter_var($this->crianca->getId(), FILTER_VALIDATE_INT);
+		if($id === 0 && !is_int($id) && $id <= 0 && !$id){
+			return false;
+		}
+
+		$sql = "UPDATE crianca set confirmado = ".$this->crianca->getConfirmado().
+		",  renda = ".$this->crianca->getRenda().
+		",  percapita = ".$this->crianca->getPerCapita().
+		",  membros = ".$this->crianca->getMembros().
+		",  motivo_negado = '".$this->crianca->getMotivoNegado().
+		"' , usuario = ".$this->crianca->getUsuario()."  
+		where id = '".$this->crianca->getId()."'" ;
+
+		$stmt = $this->banco->prepare($sql);
+		//echo $sql;
+	
+         
+		$resultado = $stmt->execute();
+		//echo $resultado;
+		if(!$resultado){
+			echo "<pre>";
+				print_r($stmt->errorInfo());
+			echo "</pre>";
+			return false;		
+		} else {
+			return $resultado;
+		}
+
+	}
+
 
     
 	public function list($value=0){
@@ -207,7 +242,7 @@ class CrudCrianca {
 		//sei que não precisa validar. 
 		$id = filter_var($id, FILTER_VALIDATE_INT);
 		$sql = "SELECT * FROM `crianca` where id = :id";
-
+		$crianca = new Crianca();
 		$stmt = $this->banco->prepare($sql);
 		$stmt->bindValue(':id', $id);
 		$resultado = $stmt->execute();
@@ -217,7 +252,15 @@ class CrudCrianca {
 			echo "<;pre>";
 			return false;
 		} else {
-			return $stmt->fetch(PDO::FETCH_ASSOC);
+			foreach ( $stmt->fetchAll(PDO::FETCH_ASSOC) as $value){
+				$crianca = new Crianca();
+				$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
+				setCei($value["cei"])->setRenda($value["renda"])->setMembros($value["membros"])->setHorarioAtual($value["horario_atual"])->setHorarioDesejado($value["horario_desejado"])->
+				setMotivoNegado($value["motivo_negado"])->setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
+				setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
+				setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
+			}
+			return $crianca;
 		}
 
 	}
