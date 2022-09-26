@@ -6,7 +6,7 @@ require_once "classes/Container.php";
 session_start();
 if (!empty($_GET) and !empty($_GET["cei"])) {
   $cei = $_GET["cei"];
-  require_once "classes/cei.php";
+  require_once "classes/Cei.php";
   $cei_object = new Cei;
   $cei_cod = $cei_object->getCodCei($cei);
   $cei_nome = $cei_object->getNomeCei($cei);
