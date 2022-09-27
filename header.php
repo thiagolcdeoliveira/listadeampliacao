@@ -216,7 +216,7 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
       <h1 class="ui inverted header sem-top">
         Lista de Ampliação 
         <?php if  (isset($_SESSION['u']) and isset($_SESSION['c'])){ 
-          require_once "classes/cei.php";
+          require_once "classes/Cei.php";
           $cei_object = new Cei;
         
           $cei_nome = $cei_object->getNomeCei($_SESSION['c']);
