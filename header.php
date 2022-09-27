@@ -194,7 +194,7 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
   <div class="ui inverted vertical masthead center aligned segment backgroud-banner ">
 
     <div class="ui container">
-      <div class="ui large secondary inverted  menu">
+      <div class="ui large secondary menu" style="opacity : 0.8; font-size: 18px;">
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
