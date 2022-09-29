@@ -49,9 +49,9 @@ if (!empty($_POST)){
           $id = $crianca->save();
       }
         }
-      }
+      
     }else {
-    $erro = 1;
+    $erro = 1;}
   }
 ?>
                        
@@ -71,7 +71,7 @@ if (!empty($_POST)){
 
                               <div class="ui message danger">
                               <div class="header">
-                              Cadastro realizado com sucesso.
+                              Cadastro não realizado
                               </div>
                               <ul class="list">
                               <p class="">Dados Obrigatorios Ficaram Falatando, Por favor preencha todos os campos. </span>

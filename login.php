@@ -21,7 +21,7 @@ if (!empty($_POST)){
           
           $senha = md5($_POST["senha"]."42");
           $senha = hash('ripemd160', $senha."42");
-         echo $senha;
+      //echo $senha;
       if (!empty($email) and !empty($senha) ){
         $usuario = new Usuario;
         $usuariocrud = new CrudUsuario($conn, $usuario);
