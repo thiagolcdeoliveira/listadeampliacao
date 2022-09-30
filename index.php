@@ -39,7 +39,7 @@ echo "</pre>";
 							<th>Horário Desejado</th>
 							<th>Turma</th>
 							<th>Responsavel</th>
-							<th>CEIs Desejados</th>
+							<th>CEI</th>
 							<th>Status</th>
 						</tr>
 					</thead>
@@ -54,7 +54,7 @@ echo "</pre>";
 							<th>Turma</th>
 
 							<th>Responsavel</th>
-							<th>CEIs Desejados</th>
+							<th>CEI</th>
 							<th>Status</th>
 						</tr>
 					</tfoot>
