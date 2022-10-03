@@ -25,6 +25,8 @@ class Crianca implements InterfaceCrianca {
 	private $confirmado;
 	private $horario_atual;
 	private $horario_desejado;
+	private $gasto_moradia;
+	private $pagamento_pensao;
 	private $status;
 	private $motivo;
 	private $data_desativacao;
@@ -344,6 +346,20 @@ class Crianca implements InterfaceCrianca {
 
 
 	}
+
+
+
+	public function getPagamentoPensao(){
+		return $this->pagamento_pensao;
+	}
+
+	public function getGastoMoradia(){
+		return $this->gasto_moradia;
+	}
+
+
+
+
 	public function getMembros(){
 		return $this->membros;
 

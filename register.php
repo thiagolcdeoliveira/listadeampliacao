@@ -30,6 +30,8 @@ if (!empty($_POST)){
           $cpf = $_POST["cpf"];
           $data_nasc = $_POST["data_nasc"];
           $renda = $_POST["renda"];
+          $pagamento_pensao = $_POST["pagamento_pensao"];
+          $gasto_moradia = $_POST["gasto_moradia"];
           $membros = $_POST["membros"];
           $horario_atual = $_POST["horarioAtual"];
           $horario_desejado = $_POST["horarioDesejado"];
@@ -223,6 +225,16 @@ if (!empty($_POST)){
                     <div class="field">
                         <label>Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa)</label>
                         <input type="number" step="0.01" name="renda" min="0.01" placeholder="Renda Familiar" required>
+
+                    </div>
+                    <div class="field">
+                        <label>Pagamento de Pensão Alimentícia</label>
+                        <input type="number" step="0.01" name="pagamento_pensao" min="0.01" placeholder="Pagamento Pensão" required>
+
+                    </div>
+                    <div class="field">
+                        <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
+                        <input type="number" step="0.01" name="gasto_moradia" min="0.01" placeholder="Gasto com Moradia" required>
 
                     </div>
                     <div class="field">
