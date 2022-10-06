@@ -12,7 +12,7 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
   $cei_nome = $cei_object->getNomeCei($cei);
 }else{
   $cei_cod = 0;
-  $cei_nome = "Todos Cei";
+  $cei_nome = "Todos os Ceis";
 
 }
 
