@@ -19,12 +19,12 @@ class CrudCrianca {
 	public function save(){
 		if (!empty($this->crianca->getDataCad())){
 			
-		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`email`,`telefone`,`endereco`, `data_cad`, `data_nasc`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual`,`renda`,`membros` ) 
-		                        VALUES (:nome, :sobrenome, :codigo, :email, :telefone, :endereco, :data_cad,  :data_nasc,   :cpf, :nome_responsavel,  :turma,  :periodo, :cei,   :percapita,   :horario_desejado, :horario_atual, :renda, :membros)";
+		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`email`,`telefone`,`endereco`, `data_cad`, `data_nasc`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual`,`renda`,`membros`,`pagamento_pensao`,`gasto_moradia` ) 
+		                        VALUES (:nome, :sobrenome, :codigo, :email, :telefone, :endereco, :data_cad,  :data_nasc,   :cpf, :nome_responsavel,  :turma,  :periodo, :cei,   :percapita,   :horario_desejado, :horario_atual, :renda, :membros, :pagamento_pensao, :gasto_moradia )";
 
 		}else{
-		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`email`, `telefone`,`endereco`,  `data_nasc`,`data_cad`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual`,`renda`,`membros` ) 
-		                       VALUES (:nome, :sobrenome,  :codigo, :email, :telefone, :endereco,  :data_nasc, now() ,     :cpf,  :nome_responsavel, :turma,  :periodo,  :cei,  :percapita,  :horario_desejado, :horario_atual,  :renda , :membros  )";
+		$sql = "INSERT INTO `crianca` (`nome`, `sobrenome`,`codigo`,`email`, `telefone`,`endereco`,  `data_nasc`,`data_cad`, `cpf`,`nome_responsavel`, `turma`, `periodo`, `cei`, `percapita`, `horario_desejado`,`horario_atual`,`renda`,`membros`,`pagamento_pensao`,`gasto_moradia` ) 
+		                       VALUES (:nome, :sobrenome,  :codigo, :email, :telefone, :endereco,  :data_nasc, now() ,     :cpf,  :nome_responsavel, :turma,  :periodo,  :cei,  :percapita,  :horario_desejado, :horario_atual,  :renda , :membros, :pagamento_pensao, :gasto_moradia )";
 		}
 		$stmt = $this->banco->prepare($sql);
 
@@ -45,11 +45,15 @@ class CrudCrianca {
 		$stmt->bindValue(':horario_desejado', $this->crianca->getHorarioDesejado());
 		$stmt->bindValue(':renda', $this->crianca->getRenda());
 		$stmt->bindValue(':membros', $this->crianca->getMembros());
+		$stmt->bindValue(':pagamento_pensao', $this->crianca->getPagamentoPensao());
+		$stmt->bindValue(':gasto_moradia', $this->crianca->getGastoMoradia());
 	//	$stmt->bindValue(':confirmado', 0);
 		if (!empty($this->crianca->getDataCad())){
 
 		$stmt->bindValue(':data_cad', $this->crianca->getDataCad());
 		}
+
+		//echo $sql;
 		//echo $stmt->execute();
 		$resultado = $stmt->execute();
 
@@ -173,7 +177,7 @@ class CrudCrianca {
 			$crianca = new Crianca();
 			$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
 			setCei($value["cei"])->setHorarioAtual($value["horario_atual"])->setHorarioDesejado($value["horario_desejado"])->
-			setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
+			setPagamentoPensao($value["pagamento_pensao"])->setGastoMoradia($value["gasto_moradia"])->setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
 			setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
 			setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
 			array_push($arraycrianca,$crianca);
@@ -200,7 +204,7 @@ class CrudCrianca {
 			$crianca = new Crianca();
 			$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
 			setCei($value["cei"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
-			setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
+			setPagamentoPensao($value["pagamento_pensao"])->setGastoMoradia($value["gasto_moradia"])->setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
 			setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
 			array_push($arraycrianca,$crianca);
 	    }
@@ -231,7 +235,7 @@ class CrudCrianca {
 			$crianca = new Crianca();
 			$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
 			setCei($value["cei"])->setHorarioAtual($value["horario_atual"])->setHorarioDesejado($value["horario_desejado"])->
-			setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
+			setConfirmado($value["confirmado"])->setPagamentoPensao($value["pagamento_pensao"])->setGastoMoradia($value["gasto_moradia"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
 			setMotivoNegado($value["motivo_negado"])->setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
 			setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
 			array_push($arraycrianca,$crianca);
@@ -256,7 +260,7 @@ class CrudCrianca {
 				$crianca = new Crianca();
 				$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
 				setCei($value["cei"])->setRenda($value["renda"])->setMembros($value["membros"])->setHorarioAtual($value["horario_atual"])->setHorarioDesejado($value["horario_desejado"])->
-				setMotivoNegado($value["motivo_negado"])->setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
+				setPagamentoPensao($value["pagamento_pensao"])->setGastoMoradia($value["gasto_moradia"])->setMotivoNegado($value["motivo_negado"])->setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
 				setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
 				setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
 			}

@@ -18,6 +18,8 @@ if (!empty($_POST)){
            array_key_exists('horarioDesejado', $_POST ) == 1  and 
            array_key_exists('renda', $_POST ) == 1  and 
            array_key_exists('membros', $_POST ) == 1  and 
+           array_key_exists('pagamento_pensao', $_POST ) == 1  and 
+           array_key_exists('gasto_moradia', $_POST ) == 1  and 
            (array_key_exists('email', $_POST ) == 1  or 
            array_key_exists('telefone', $_POST ) == 1   or 
            array_key_exists('endereco', $_POST ) == 1  
@@ -35,14 +37,16 @@ if (!empty($_POST)){
           $membros = $_POST["membros"];
           $horario_atual = $_POST["horarioAtual"];
           $horario_desejado = $_POST["horarioDesejado"];
-          $percapita = $renda /  $membros;
+
+          $renda_considerada = $renda -   ($gasto_moradia + $pagamento_pensao);   
+          $percapita = $renda_considerada /  $membros;
          // $email = $_POST["email"];
           $endereco = $_POST["endereco"];
           $nome_resposanvel = $_POST["nome_responsavel"];
       if (!empty($nome) and !empty($sobrenome) and !empty($turma) and !empty($cei) and  !empty($cpf)) {
           $crianca1 = new Crianca;
           $crianca1->setNome($nome)->setSobrenome($sobrenome)->setTurma($turma)->setCei($cei)->
-          setCpf($cpf)->setRenda($renda)->setMembros($membros)->setDataNasc($data_nasc)->setNomeResponsavel($nome_resposanvel)->
+          setCpf($cpf)->setPagamentoPensao($pagamento_pensao)->setGastoMoradia($gasto_moradia)->setRenda($renda)->setMembros($membros)->setDataNasc($data_nasc)->setNomeResponsavel($nome_resposanvel)->
           setEndereco($endereco)->setHorarioAtual($horario_atual)->setHorarioDesejado($horario_desejado)->setPerCapita($percapita)->
           setCodigoGerar();
           $crianca = new CrudCrianca($conn, $crianca1);
@@ -222,28 +226,55 @@ if (!empty($_POST)){
                             </div>
                         </div>
                     </div>
+                    
+                </div>
+            </div>
+
+
+
+
+
+            <hr class="ui dividing header">
+
+            <div class="field" id="turma">
+                <div class="two fields">
+                    
                     <div class="field">
                         <label>Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa)</label>
                         <input type="number" step="0.01" name="renda" min="0.01" placeholder="Renda Familiar" required>
 
                     </div>
                     <div class="field">
-                        <label>Pagamento de Pensão Alimentícia</label>
-                        <input type="number" step="0.01" name="pagamento_pensao" min="0.01" placeholder="Pagamento Pensão" required>
+                        <label>Quantas Pessoas Moram na Casa? </label>
+                        <input type="number" name="membros" value='2' min="2" placeholder="Membros" required>
 
                     </div>
+                   
+                   
+                </div>
+            </div>
+
+
+          <!--  <hr class="ui dividing header">-->
+
+            <div class="field" id="turma">
+                <div class="two fields">
+                    
+                    
                     <div class="field">
                         <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
-                        <input type="number" step="0.01" name="gasto_moradia" min="0.01" placeholder="Gasto com Moradia" required>
+                        <input type="number" step="0.01" value='0' name="gasto_moradia" min="0.0" placeholder="Gasto com Moradia" required>
 
                     </div>
                     <div class="field">
-                        <label>Quantas Pessoas Moram na Casa? </label>
-                        <input type="number" name="membros" placeholder="Membros" required>
+                        <label>Pagamento de Pensão Alimentícia</label>
+                        <input type="number" step="0.01" value='0' name="pagamento_pensao" min="0.0" placeholder="Pagamento Pensão" required>
 
                     </div>
                 </div>
             </div>
+
+
 
             <hr class="ui dividing header">
 
@@ -252,7 +283,7 @@ if (!empty($_POST)){
                     <input type="checkbox" name="permitir[]" value="1" id="permitir"
                         title="Desculpa, mas se o compartilhamento dos dados não podemos adicionar a criança a lista de espera."
                         required
-                        oninvalid="this.setCustomValidity(\'Desculpa, mas se o compartilhamento dos dados não podemos adicionar a criança a lista de espera\')">
+                        oninvalid="this.setCustomValidity(\'Desculpa, mas sem o compartilhamento dos dados não podemos adicionar a criança a lista de espera\')">
                     <label for="permitir">
                         Como responsável pela criança, declaro a veracidade e permito o compartilhamento dos dados deste
                         formulário com a Prefeitura Municipal de Araquari.

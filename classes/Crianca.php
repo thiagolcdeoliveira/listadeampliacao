@@ -159,6 +159,21 @@ class Crianca implements InterfaceCrianca {
 
 
 	}
+
+	public function setPagamentoPensao($pagamento_pensao){
+		$this->pagamento_pensao = $pagamento_pensao;
+		return $this;
+
+
+	}
+	
+	public function setGastoMoradia($gasto_moradia){
+		$this->gasto_moradia = $gasto_moradia;
+		return $this;
+
+
+	}
+
 	public function setRenda($renda){
 		$this->renda = $renda;
 		return $this;

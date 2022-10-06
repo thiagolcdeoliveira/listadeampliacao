@@ -31,7 +31,6 @@ $crud = new CrudCrianca($conn, $crianca1);
 							<th>Nome</th>
 							<th>Data Nasc</th>
 							<th>Turma Desejada</th>
-							<th>Periódo Desejada</th>
 							<th>Responsavel</th>
 							<th>Endereço</th>
 							<th>CEIs Desejados</th>
@@ -48,7 +47,6 @@ $crud = new CrudCrianca($conn, $crianca1);
 							<th>Nome</th>
 							<th>Data Nasc</th>
 							<th>Turma</th>
-							<th>Periódo</th>
 							<th>Responsavel</th>
 							<th>Endereço</th>
 							<th>CEIs Desejados</th>
@@ -66,7 +64,6 @@ $crud = new CrudCrianca($conn, $crianca1);
 						    <td><?php echo $value->getNome()." ".$value->getSobrenome()  ?></td>
 							<td><?php echo $value->getDataNasc()  ?></td>
 							<td><?php echo $value->getTurma()  ?></td>
-							<td><?php echo $value->getAllPeriodo()   ?></td>
 							<td><?php echo $value->getNomeResponsavel()   ?></td>
 							<td><?php echo $value->getTelefone()   ?>  <?php echo $value->getEmail()   ?>   </td>
 							<td><?php echo $value->getAllCeis()  ?></td>
