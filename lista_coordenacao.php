@@ -33,7 +33,9 @@ $crud = new CrudCrianca($conn, $crianca1);
 							<th>Turma Desejada</th>
 							<th>Responsavel</th>
 							<th>Endereço</th>
-							<th>CEIs Desejados</th>
+							<th>CEI</th>
+							
+							<th>Confirmação</th>
 							<th>Status</th>
 							<th>Ações</th>
 
@@ -49,7 +51,9 @@ $crud = new CrudCrianca($conn, $crianca1);
 							<th>Turma</th>
 							<th>Responsavel</th>
 							<th>Endereço</th>
-							<th>CEIs Desejados</th>
+							<th>CEI</th>
+							
+							<th>Confirmação</th>
 							<th>Status</th>
 							<th>Ações</th>
 						</tr>
@@ -67,7 +71,16 @@ $crud = new CrudCrianca($conn, $crianca1);
 							<td><?php echo $value->getNomeResponsavel()   ?></td>
 							<td><?php echo $value->getTelefone()   ?>  <?php echo $value->getEmail()   ?>   </td>
 							<td><?php echo $value->getAllCeis()  ?></td>
-							<!--<td><?php //echo if($value->getStatus()){  ?>-->
+							<td><?php if ($value->getConfirmado()==1){  ?>
+									Documentação Aprovada
+							<?php }else  { 
+								 if ($value->getConfirmado()==0){ ?>
+									Aguardando Conferência da Documentação
+							<?php   } else{
+
+							?>
+								Documentação Negada:
+	<?php  echo $value->getMotivoNegado(); } } ?></td>
 								<td><?php  if($value->getStatus()==0){  ?>
 									<?php echo $value->getMotivo()  ?>
 								
@@ -76,6 +89,8 @@ $crud = new CrudCrianca($conn, $crianca1);
 
 								<?php }?>
 							</td>
+							
+
 							<td><a href="delete.php?id=<?php echo $value->getId() ?>" > <i class="ui icon trash"></i></a> 
 							<a href="confirme.php?id=<?php echo $value->getId() ?>" > <i class="ui icon question circle "></i> </a>
 						</td>
