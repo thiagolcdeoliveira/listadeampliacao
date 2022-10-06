@@ -44,7 +44,7 @@
                                 $confirmado =  $_POST["confirmado"];
                                 $id =  $_POST["id"];
                                 $crianca1 = new Crianca;
-                                $crianca1->setId($id)->setConfirmado($confirmado)->setMotivoNegado($motivo_negado)->setMembros($membros)->setPerCapita($percapita)->setRenda($renda)->setUsuario($id_usuario);
+                                $crianca1->setId($id)->setConfirmado($confirmado)->setPagamentoPensao($pagamento_pensao)->setGastoMoradia($gasto_moradia)->setMotivoNegado($motivo_negado)->setMembros($membros)->setPerCapita($percapita)->setRenda($renda)->setUsuario($id_usuario);
                                 $crianca = new CrudCrianca($conn, $crianca1);
                                 $crianca->updateStatus();
                                 $crianca1 = new Crianca;
@@ -63,7 +63,7 @@
             <?php if (!empty($sucesso)) { ?>
                 <div class="ui message">
                     <div class="header">
-                        Exclusão realizada com sucesso.
+                        Decisão realizada com sucesso.
                     </div>
                     <ul class="list">
                         <li>
@@ -76,7 +76,7 @@
                             if (!empty($erro) and  (empty($sucesso))) { ?>
                               <div class=" ui message">
                                 <div class="header">
-                                    Exclusão realizada com sucesso.
+                                    Decisão não realizada.
                                 </div>
                                 <p class="">Dados Obrigatorios Ficaram Falatando, Por favor preencha todos os campos. </span>
                                     </h1>
@@ -165,14 +165,14 @@
                     
                     <div class="field">
                         <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
-                        <input type="number" step="0.01" <?php if (!empty($crianca->getGastoMoradia())) { ?> value="<?php echo $crianca->getRenda();
-                                                                                                                    }else { echo "value=0";} ?>"  name="gasto_moradia" min="0.0" placeholder="Gasto com Moradia" required>
+                        <input type="number" step="0.01" <?php if (!empty($crianca->getGastoMoradia())  and $crianca->getGastoMoradia() >= 0  ) { ?> value="<?php echo $crianca->getGastoMoradia();
+                                                                                                                    }else { echo "value='0'";} ?>"  name="gasto_moradia" min="0.0" placeholder="Gasto com Moradia" required>
 
                     </div>
                     <div class="field">
                         <label>Pagamento de Pensão Alimentícia</label>
-                        <input type="number" step="0.01" <?php if (!empty($crianca->getGastoMoradia())) { ?> value="<?php echo $crianca->getRenda();
-                                                                                                                    }else { echo "value=0";} ?>" name="pagamento_pensao" min="0.0" placeholder="Pagamento Pensão" required>
+                        <input type="number" step="0.01" <?php if (!empty($crianca->getPagamentoPensao()) and $crianca->getPagamentoPensao() >= 0  ) { ?> value="<?php echo $crianca->getPagamentoPensao();
+                                                                                                                    }else { echo "value='0'";} ?>" name="pagamento_pensao" min="0.0" placeholder="Pagamento Pensão" required>
 
                     </div>
                 </div>

@@ -128,6 +128,8 @@ class CrudCrianca {
 		$sql = "UPDATE crianca set confirmado = ".$this->crianca->getConfirmado().
 		",  renda = ".$this->crianca->getRenda().
 		",  percapita = ".$this->crianca->getPerCapita().
+		",  pagamento_pensao = ".$this->crianca->getPagamentoPensao().
+		",  gasto_moradia = ".$this->crianca->getGastoMoradia().
 		",  membros = ".$this->crianca->getMembros().
 		",  motivo_negado = '".$this->crianca->getMotivoNegado().
 		"' , usuario = ".$this->crianca->getUsuario()."  
