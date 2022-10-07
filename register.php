@@ -37,8 +37,11 @@ if (!empty($_POST)){
           $membros = $_POST["membros"];
           $horario_atual = $_POST["horarioAtual"];
           $horario_desejado = $_POST["horarioDesejado"];
-
-          $renda_considerada = $renda -   ($gasto_moradia + $pagamento_pensao);   
+          
+          $renda_considerada = $renda  -   ($gasto_moradia + $pagamento_pensao);   
+          if ($renda_considerada < 0) {
+            $renda_considerada = 0;
+          }
           $percapita = $renda_considerada /  $membros;
          // $email = $_POST["email"];
           $endereco = $_POST["endereco"];

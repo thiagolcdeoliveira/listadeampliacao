@@ -38,6 +38,9 @@
                                 $pagamento_pensao = $_POST["pagamento_pensao"];
                                 $gasto_moradia = $_POST["gasto_moradia"];
                                 $renda_considerada = $renda -   ($gasto_moradia + $pagamento_pensao);   
+                                if ($renda_considerada < 0) {
+                                    $renda_considerada = 0;
+                                  }
                                 $percapita =  $renda_considerada / $membros;
                                 $motivo_negado = "";
                                 $motivo_negado =  $_POST["motivo_negado"];
