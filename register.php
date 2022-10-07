@@ -140,25 +140,25 @@ if (!empty($_POST)){
                         <label>Turma em criaça está matriculada atualmente*</label>
                         <div class="two fields">
                             <div class=" field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio ">
                                     <input type="radio" name="turma" value="5" id="turma1">
                                     <label for="turma1"> Berçário 1 (4 meses a 11 meses)</label>
                                 </div>
-                                <div class="ui radio checkbox">
+                                <div class="ui radio ">
                                     <input type="radio" name="turma" value="1" id="turma2">
                                     <label for="turma2"> Berçário 2 (1 ano a 1 ano e 11 meses) </label>
                                 </div>
-                                <div class="ui radio checkbox">
+                                <div class="ui radio ">
                                     <input type="radio" name="turma" value="2" id="turma3">
                                     <label for="turma3"> Maternal (2 anos a 2 anos e 11 meses)</label>
                                 </div>
                             </div>
                             <div class=" field">
-                                <div class="ui radio checkbox">
+                                <div class="ui radio ">
                                     <input type="radio" name="turma" value="3" id="turma4">
                                     <label for="turma4">Jardim ( 3 anos a 3 anos e 11 meses)</label>
                                 </div>
-                                <div class="ui radio checkbox">
+                                <div class="ui radio ">
                                     <input type="radio" name="turma" value="4" id="turma5">
                                     <label for="turma5"> Pré 1 (4 anos a 4 anos e 11 meses)</label>
                                 </div>
@@ -170,13 +170,13 @@ if (!empty($_POST)){
                     <div class="field" id="turma">
                         <label>Horário Atual</label>
                         <div class="item">
-                            <div class="ui  radio checkbox">
+                            <div class="ui  radio ">
                                 <input type="radio" name="horarioAtual" id="hoararioAtual2" value="1" required>
                                 <label for="hoararioAtual2">7h às 13h</label>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="ui  radio checkbox">
+                            <div class="ui  radio ">
                                 <input type="radio" name="horarioAtual" id="hoararioAtual3" value="2" required>
                                 <label for="hoararioAtual3">12h às 18h</label>
                             </div>
@@ -185,19 +185,19 @@ if (!empty($_POST)){
                     <div class="field">
                         <label>Horário Desejado</label>
                         <div class="item">
-                            <div class="ui  radio checkbox">
+                            <div class="ui  radio ">
                                 <input type="radio" name="horarioDesejado" id="hoararioDesejado2" value="1" required>
                                 <label for="hoararioDesejado2">7h às 15h</label>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="ui  radio checkbox">
+                            <div class="ui  radio ">
                                 <input type="radio" name="horarioDesejado" id="hoararioDesejado3" value="2" required>
                                 <label for="hoararioDesejado3">8h às 16h</label>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="ui  radio checkbox">
+                            <div class="ui  radio ">
                                 <input type="radio" name="horarioDesejado" id="hoararioDesejado4" value="3" required>
                                 <label for="hoararioDesejado4">9h às 17h</label>
                             </div>
@@ -212,15 +212,15 @@ if (!empty($_POST)){
 
 
        
-
+          <?php if($cei_cod!=0) { ?>
             <hr class="ui dividing header">
 
             <div class="field" id="turma">
                 <div class="three fields">
                     <div class="field" id="turma">
-                        <label>CEIs Desejados</label>
+                        <label>CEI</label>
                         <div class="item">
-                            <div class="ui  radio checkbox">
+                            <div class="ui  radio ">
                                 <input type="radio" name="cei" id="cei2" value="<?php echo $cei_cod; ?>" checked>
                                 <label for="cei2"> <?php echo $cei_nome; ?></label>
                             </div>
@@ -230,10 +230,158 @@ if (!empty($_POST)){
                 </div>
             </div>
 
+            <?php } else { ?>
+            <hr class="ui dividing header">                           
+
+            <div class="field" id="turma" >
+            <label>CEI</label>
+            <div class="two fields">
+                <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                    <div class="ui relaxed divided list">
+                        <div class="item">
+                        <div class="ui  ">
+                            <input type="radio"  name="cei" id="cei2" value="1">
+                            <label for="cei2" > Antenor Sprotte - Centro </label>
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei3"   value="2">
+                            <label for="cei3" >Branca de Neve - Itinga (próx. Mercado Albino) </label>
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei4"  value="3" >
+                            <label for="cei4">Bruno de Magalhães - Itinga </label>
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei5"   value="4" >
+                            <label for="cei5">Cantinho da Vovó Justina - Itinga (próx. Hipermais)</label>
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="ui radio ">
+                            <input type="radio" name="cei"   id="cei6"  value="5">
+                            <label for="cei6">Cinderela - Centro </label>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class=" field">
+                    <div class="ui relaxed divided list">
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei7"  value="6" >
+                            <label for="cei7" >Criança Bela - Itinga (próx. restaurante Gil)</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei8"  value="7">
+                            <label for="cei8" >Heley de Abreu - Itinga (próx. Escola São Benedito)</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei9"  value="8">
+                            <label for="cei9">João Geraldo Correa - Itapocu</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei10"   value="9" >
+                            <label for="cei10">João Ignácio Filho - Rainha</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei12"  value="11" >
+                            <label for="cei12">João Luiz do Rosário - Corveta</label>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                    <div class="ui relaxed divided list">
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei"   id="cei13"  value="12">
+                            <label for="cei13" >João Serafim -Barra do Itapocu</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei14"  value="13">
+                            <label for="cei14" >Lindolpho José da Silva - Porto Grande</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei15"  value="14">
+                            <label for="cei15">Pequeno Anjo - Rainha</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio"name="cei" id="cei16"  value="15"   >
+                            <label for="cei16">Pequeno Principe - Areias Pequenas</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei17"  value="16">
+                            <label for="cei17">Professora Janaina - Itinga (próx. Escola São Benedito)</label>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                    <div class="ui relaxed divided list">
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei18"  value="17">
+                            <label for="cei18" >Marise Travasso - Itinga (próx. Escola Jablonsky)</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei19"  value="18">
+                            <label for="cei19" >Santo Antônio - Itinga (próx. Campo do Perna)</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei20"  value="19">
+                            <label for="cei20"> Vovó Brandina - Centro</label>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ui radio ">
+                            <input type="radio" name="cei" id="cei21" value="20" >
+                            <label for="cei21"> Vovó Maria de Lurdes Max - Icaraí (próx. IFC)</label>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
 
 
-
-
+            <?php }  ?>
             <hr class="ui dividing header">
 
             <div class="field" id="turma">
