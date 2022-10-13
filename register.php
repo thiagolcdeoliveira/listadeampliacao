@@ -140,7 +140,7 @@ if (!empty($_POST)){
             <div class="field" id="turma">
                 <div class="two fields">
                     <div class=" field">
-                        <label>Turma em criaça está matriculada atualmente*</label>
+                        <label>Turma em criança está matriculada atualmente*</label>
                         <div class="two fields">
                             <div class=" field">
                                 <div class="ui radio ">
