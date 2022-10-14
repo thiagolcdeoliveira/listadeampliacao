@@ -3,12 +3,14 @@
 
 
 
+
 <div class="ui vertical stripe segment">
-    <div class="ui grid container">
+    <div class="ui grid container  ">
 
 
         <?php 
 $conn = Container::getBanco();
+require_once "envia_email.php";
 
 if (!empty($_POST)){
       if( array_key_exists('turma', $_POST ) == 1 and 
@@ -54,6 +56,7 @@ if (!empty($_POST)){
           setCodigoGerar();
           $crianca = new CrudCrianca($conn, $crianca1);
           $id = $crianca->save();
+          EnviaEmail($crianca1);  
       }
         }
       
@@ -89,7 +92,10 @@ if (!empty($_POST)){
           </div>
           <?php  }
           }?>
-        <form class="ui form" action="register.php?cei=<?php echo $cei_cod; ?>" method="POST">
+   
+
+
+        <form class="ui form" id="formID" action="register.php?cei=<?php echo $cei_cod; ?>" method="POST">
             <h3> Ampliação de Tempo de Atendimento na Educação Infantil</h3>
             <h4 class="ui dividing header"> <?php echo $cei_nome;  ?></h4>
             <div class="field">
@@ -151,20 +157,22 @@ if (!empty($_POST)){
                                     <input type="radio" name="turma" value="1" id="turma2">
                                     <label for="turma2"> Berçário 2 (1 ano a 1 ano e 11 meses) </label>
                                 </div>
-                                <div class="ui radio ">
+                               
+                            </div>
+                           
+                            <div class=" field">
+                            <div class="ui radio ">
                                     <input type="radio" name="turma" value="2" id="turma3">
                                     <label for="turma3"> Maternal (2 anos a 2 anos e 11 meses)</label>
                                 </div>
-                            </div>
-                            <div class=" field">
                                 <div class="ui radio ">
                                     <input type="radio" name="turma" value="3" id="turma4">
                                     <label for="turma4">Jardim ( 3 anos a 3 anos e 11 meses)</label>
                                 </div>
-                                <div class="ui radio ">
+                               <!-- <div class="ui radio ">
                                     <input type="radio" name="turma" value="4" id="turma5">
                                     <label for="turma5"> Pré 1 (4 anos a 4 anos e 11 meses)</label>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -443,11 +451,15 @@ if (!empty($_POST)){
             </div>
 
 
-            <div class="ui buttons fluid">
+            <div class="ui buttons fluid  ">
+              <!--  <div class="ui active inverted dimmer segment">
+                    <div class="ui medium text loader">Loading</div>
+                </div>   -->
+                
                 <a class="ui button secondary " href="/">
                     Cancelar
                 </a>
-                <button type="submit" class="ui button ">
+                <button type="submit" name="send" id="send"  class="ui button ">
                     Salvar
                 </button>
             </div>
@@ -457,5 +469,19 @@ if (!empty($_POST)){
 </div>
 
 </div>
+
+<script type="text/javascript" >
+var formID = document.getElementById("formID");
+var send = $("#send");
+
+$(formID).submit(function(event){
+
+  if (formID.checkValidity()) {
+    send.attr('disabled', 'disabled');
+  }
+});
+
+
+</script>
 
 <?php require_once "footer.php" ?>

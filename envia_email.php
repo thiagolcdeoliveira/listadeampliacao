@@ -2,19 +2,25 @@
 require_once('PHPMailer/PHPMailer/src/PHPMailer.php');
 require_once('PHPMailer/PHPMailer/src/SMTP.php');
 require_once('PHPMailer/PHPMailer/src/Exception.php');
- 
+require_once "classes/Crianca.php";
+require_once "classes/CrudCrianca.php";
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
  
-$mail = new PHPMailer(true);
+
  
+function EnviaEmail($crianca)
+{
+    
+    $mail = new PHPMailer(true);
 try {
-	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+	//$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 	$mail->isSMTP();
-	$mail->Host = 'smtp.gmail.com';
+	$mail->Host = 'mail.araquari.sc.gov.br';
 	$mail->SMTPAuth = True;
-	$mail->Username = 'ti@araquari.sc.gov.br';
+	$mail->Username = 'lista.sistema@araquari.sc.gov.br';
 	$mail->Password = '';
 	$mail->Port = 25;
     $mail->SMTPSecure = 'tls';
@@ -29,14 +35,32 @@ try {
             'allow_self_signed' => True
         )
     );
-	$mail->setFrom('ti@araquari.sc.gov.br');
-	$mail->addAddress('thiagolocatellicdeoliveira@gmail.com.br');
+	$mail->setFrom('lista.sistema@araquari.sc.gov.br');
+	$mail->addAddress('lista.mpsc@araquari.sc.gov.br');
 	//$mail->addAddress('endereco2@provedor.com.br');
- 
+
+   // $crianca = new Crianca($crianca1);
+   // echo "Criança - > ". $crianca->getNome();
+    /*$crianca->setNome("Thiago")->setSobrenome("Locatelli")->setTurma("1")->setCei("2")->
+    setCpf("09947875962")->setDataNasc("10/11/1997")->setNomeResponsavel("Mãe Thigao")->
+    setEndereco("Rua Jose Miguel")->setCodigoGerar();*/
+    $lista = "Lista de Ampliação";
+    
+
+    $mensagem = "<table>
+    <tr><td>Nome e Sobrenome:</td><td>".$crianca->getNome()." ". $crianca->getSobrenome()."</td></tr>
+    <tr><td>Nome da Mãe:</td><td>".$crianca->getNomeResponsavel()."</td></tr>
+    <tr><td>Data Nascimento:</td><td>".$crianca->getDataNasc()."</td></tr>
+    <tr><td>Endereço:</td><td>".$crianca->getEndereco()."</td></tr>
+    <tr><td>Email/telefone:</td><td>".$crianca->getEmail()."</td></tr>
+    <tr><td>CEIs:</td><td>".$crianca->getAllCeis()."</td></tr>
+    <tr><td>Turma:</td><td>".$crianca->getTurma()."</td></tr>
+    <tr><td>Data do Envio:</td><td>".date('d/m/Y H:i')."</td></tr>    
+    ";
 	$mail->isHTML(true);
-	$mail->Subject = 'Teste de email via gmail Canal TI';
-	$mail->Body = 'Chegou o email teste do <strong>Canal TI</strong>';
-	$mail->AltBody = 'Chegou o email teste do Canal TI';
+	$mail->Subject = $lista." - ".$crianca->getCodigo()." - ".$crianca->getNome();
+	$mail->Body = $mensagem;
+	$mail->AltBody = '';
  
 	if($mail->send()) {
 		echo 'Email enviado com sucesso';
@@ -45,4 +69,5 @@ try {
 	}
 } catch (Exception $e) {
 	echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
+}
 }
