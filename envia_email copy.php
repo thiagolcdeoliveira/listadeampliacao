@@ -45,5 +45,5 @@ try {
 		echo 'Email nao enviado';
 	}
 } catch (Exception $e) {
-	echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
+	echo "Erro ao enviar mensagem: {$mail->ErrorInfo}. Por favor, comunique a Secretaria de Educação";
 }
