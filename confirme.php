@@ -108,7 +108,7 @@
 
                                 <div class="field">
                                     <label>*Decisão:  Aprovado ou Não</label>
-                                    <div class="two fields">
+                                    <div class="three fields">
                                         
                                     
                                          <div class=" field">
@@ -120,7 +120,14 @@
                                         </div>
                                         <div class=" field">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="confirmado" value="2" <?php if ($crianca->getConfirmado() == 2) { ?> checked <?php } ?>" id="turma4">
+                                                <input type="radio" name="confirmado" value="0" <?php if ($crianca->getConfirmado() == 0) { ?> checked <?php } ?>" id="turma4">
+                                                <label for="confirmado">Aguardando</label>
+                                            </div>
+
+                                        </div>
+                                        <div class=" field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="confirmado" value="" <?php if ($crianca->getConfirmado() == 2) { ?> checked <?php } ?>" id="turma4">
                                                 <label for="confirmado">Negado</label>
                                             </div>
 

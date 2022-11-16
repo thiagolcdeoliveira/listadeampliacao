@@ -50,7 +50,7 @@ class Crianca implements InterfaceCrianca {
 		$codigo = $codigo.$data; 
 		$codigo = $codigo.$this->getTurma(); 
 		$codigo = str_replace(" ",'',$codigo);
-		$this->codigo = strtoupper ($codigo);
+		$this->codigo = strtoupper ($codigo) . rand(10,99) ;
 		return $this;
 
 	}

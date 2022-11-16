@@ -400,7 +400,7 @@ if (!empty($_POST)){
                     
                     <div class="field">
                         <label>Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa)</label>
-                        <input type="number" step="0.01" name="renda" min="0.01" placeholder="Renda Familiar" required>
+                        <input type="number" value="0000"  name="renda" min="0.01"  placeholder="Renda Familiar" required>
 
                     </div>
                     <div class="field">
