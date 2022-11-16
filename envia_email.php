@@ -52,7 +52,6 @@ try {
     <tr><td>Nome da Mãe:</td><td>".$crianca->getNomeResponsavel()."</td></tr>
     <tr><td>Data Nascimento:</td><td>".$crianca->getDataNasc()."</td></tr>
     <tr><td>Endereço:</td><td>".$crianca->getEndereco()."</td></tr>
-    <tr><td>Email/telefone:</td><td>".$crianca->getEmail()."</td></tr>
     <tr><td>CEIs:</td><td>".$crianca->getAllCeis()."</td></tr>
     <tr><td>Turma:</td><td>".$crianca->getTurma()."</td></tr>
     <tr><td>Data do Envio:</td><td>".date('d/m/Y H:i')."</td></tr>    
