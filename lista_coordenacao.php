@@ -89,7 +89,7 @@ $crud = new CrudCrianca($conn, $crianca1);
 							<?php   } else{
 
 							?>
-								Negado. Motivo: 
+								Negado: 
 							<?php  echo $value->getMotivoNegado(); 
 								} 
 							}

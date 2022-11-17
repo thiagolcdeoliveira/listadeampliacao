@@ -78,21 +78,35 @@ echo "</pre>";
 							<td><?php echo $value->getTurma()  ?></td>
 							<td><?php echo $value->getNomeResponsavelMask()   ?></td>
 							<td><?php echo $value->getAllCeis()  ?></td>
-							<td>
-							<?php if ($value->getConfirmado()==1){  ?>
-									Documentação Aprovada
+							<td><?php if ($value->getConfirmado()==1){  ?>
+									 Aprovado na 1° Fase 
 							<?php }else  { 
 								 if ($value->getConfirmado()==0){ ?>
-									Aguardando Conferência da Documentação
+									Aguardando Análise
+							
+								
+							<?php } else  { 
+								 if ($value->getConfirmado()==3){ ?>
+									Aprovado na 2° Fase
+							
+							<?php } else  { 
+								 if ($value->getConfirmado()==4){ ?>
+									Aguardando Atualizar de Documentação
+
 							<?php   } else{
 
 							?>
-								Documentação Negada:
-	<?php  echo $value->getMotivoNegado(); } } ?>
+								Negado: 
+							<?php  echo $value->getMotivoNegado(); 
+								} 
+							}
+						}
+							} ?>
 
+							
+							</td>
 
-
-						</td>
+							
 						</tr>
 
 						<?php  } ?>
