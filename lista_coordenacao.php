@@ -19,8 +19,32 @@ $crud = new CrudCrianca($conn, $crianca1);
 <div class="ui vertical stripe segment">
 
 <div class="ui grid container">
-
-  
+<form class="ui form" id="formID" action="lista_coordenacao.php?cei=<?php echo $cei_cod; ?>" method="GET">
+            <h3> Filtro por Data</h3>
+            <h4 class="ui dividing header"> <?php echo $cei_nome;  ?></h4> 
+		      
+                <div class="two fields">
+                    <div class="field">
+                        <label>Data Início da Inscrição</label>
+                        <input type="Date" name="data_inicio" oninput="mascaradata(this)" placeholder="Data de Nascimento"
+                            required>
+                    </div>
+					<div class="field ">
+						
+                        <label>Data Final da Inscrição</label>
+						<div class=" ui  fluid action input">
+                        <input type="Date" name="data_fim" oninput="mascaradata(this)" placeholder="Data de Nascimento"
+                            required>
+						<button type="submit" class="ui button">Pesquisar</button>
+                    </div>
+					</div>
+					<input type="hidden" name="cei" value="<?php echo $cei_cod;  ?>">
+			<!--		<div class="field">
+                        <label>Filtar</label>
+                        <input class="ui button fluid" type="submit" value="Pesquisar">
+                    </div>-->
+                </div>
+           
   
 <table class="ui celled table" id="dataTableCriancaCordenacao"  >
 					<thead>
@@ -59,8 +83,23 @@ $crud = new CrudCrianca($conn, $crianca1);
 						</tr>
 					</tfoot>
 					<tbody>
+					<?php 
+					$data_filtro=False;
+					if( array_key_exists('data_inicio', $_GET ) == 1 and 
+					array_key_exists('data_fim', $_GET ) == 1 ){
+					$data_inicio = $_GET["data_inicio"];
+					$data_fim = $_GET["data_fim"];
+					
+					}else{
+						$data_inicio = 0;
+						$data_fim = 0;
+					}
+					 ?> 
+
 					<?php if  (isset($_SESSION['u']) and isset($_SESSION['c'])){ ?>		
-					<?php foreach ($crud->list($_SESSION['c']) as $key => $value){   ?>
+					<?php foreach ($crud->list($_SESSION['c'],$data_inicio,$data_fim ) as $key => $value){   ?>
+						
+						
 						<tr>
 						    <td><?php echo $value->getId() ?> </td>
 							<td><?php echo $value->getDataCad()  ?></td>

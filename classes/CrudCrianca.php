@@ -154,10 +154,24 @@ class CrudCrianca {
 
 
     
-	public function list($value=0){
+	public function list($value=0,$data_inicio=0,$data_fim=0){
 		$filtro='';
 		if ($value > 0 ) {
            $filtro = " and cei=".$value;
+		   if ($data_inicio != 0){
+			
+			//$data_inicio = DateTime::createFromFormat('Y-m-d', $data_inicio);
+		   
+			
+			//$filtro = $filtro. " and data_cad >= DATE(". $data_inicio->format('d-m-Y').")";
+			$filtro = $filtro. " and data_cad >= '". $data_inicio." 00:00:00'";
+		}
+			if ($data_fim != 0){
+				//$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
+				//$filtro = $filtro. " and data_cad <= DATE(". $data_fim->format('d-m-Y').")";
+				$filtro = $filtro. " and data_cad <= '". $data_fim."  59:59:59'";
+				
+		 }
 		}
 		$sql = "SELECT * FROM `crianca` ";
 		$sql = "select *, CASE turma
@@ -170,7 +184,7 @@ class CrudCrianca {
 		ELSE 'erro' END as turma
         from crianca where ativo = 1 
 		 $filtro order by percapita";
-		//echo $sql;
+		echo $sql;
 		$stmt = $this->banco->prepare($sql);
 		$stmt->execute();
 		$arraycrianca = array();
