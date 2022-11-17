@@ -71,7 +71,7 @@ echo "</pre>";
 						<tr>
 						   
 						<td><?php echo $value->getDataCad()  ?></td>
-						<td><?php echo $value->getPerCapita()  ?></td>
+						<td>R$ <?php echo $value->getPerCapita()  ?></td>
 						    <td><?php echo $value->getCodigo()  ?></td>
 							<td><?php echo $value->getHorarioAtualDescricao()  ?></td>
 							<td><?php echo $value->getHorarioDesejadoDescricao()  ?></td>
