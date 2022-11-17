@@ -184,7 +184,7 @@ class CrudCrianca {
 		ELSE 'erro' END as turma
         from crianca where ativo = 1 
 		 $filtro order by percapita";
-		echo $sql;
+		//echo $sql;
 		$stmt = $this->banco->prepare($sql);
 		$stmt->execute();
 		$arraycrianca = array();
