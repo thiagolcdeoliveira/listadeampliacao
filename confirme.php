@@ -100,44 +100,48 @@
                     <div class="field">
                         <label></label>
                         <div class="field" id="turma">
-                            <div class="three fields">
-                            <div class=" field">
-                                            
-
-                                        </div>
-
+                          
                                 <div class="field">
-                                    <label>*Decisão:  Aprovado ou Não</label>
-                                    <div class="three fields">
-                                        
                                     
-                                         <div class=" field">
-                                            <div class="ui radio checkbox">
-                                                <input type="radio" name="confirmado" value="1" <?php if ($crianca->getConfirmado() == 1) { ?> checked <?php   } ?> id="turma1">
-                                                <label for="confirmado">Aprovado</label>
-                                            </div>
-
-                                        </div>
+                                    <div class="five fields">
+                                        
                                         <div class=" field">
                                             <div class="ui radio checkbox">
                                                 <input type="radio" name="confirmado" value="0" <?php if ($crianca->getConfirmado() == 0) { ?> checked <?php } ?>" id="turma4">
-                                                <label for="confirmado">Aguardando</label>
+                                                <label for="confirmado">Aguardando Análise</label>
+                                            </div>
+
+                                        </div>
+                                         <div class=" field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="confirmado" value="1" <?php if ($crianca->getConfirmado() == 1) { ?> checked <?php   } ?> id="turma1">
+                                                <label for="confirmado"> Aprovado na 1° Fase </label>
                                             </div>
 
                                         </div>
                                         <div class=" field">
                                             <div class="ui radio checkbox">
-                                                <input type="radio" name="confirmado" value="" <?php if ($crianca->getConfirmado() == 2) { ?> checked <?php } ?>" id="turma4">
+                                                <input type="radio" name="confirmado" value="4" <?php if ($crianca->getConfirmado() == 4) { ?> checked <?php } ?>" id="turma4">
+                                                <label for="confirmado">Aguardando Atualizar de Documentação</label>
+                                            </div>
+
+                                        </div>
+                                        <div class=" field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="confirmado" value="3" <?php if ($crianca->getConfirmado() == 3) { ?> checked <?php   } ?> id="turma1">
+                                                <label for="confirmado"> Aprovado na 2° Fase </label>
+                                            </div>
+
+                                        </div>
+                                        <div class=" field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="confirmado" value="2" <?php if ($crianca->getConfirmado() == 2) { ?> checked <?php } ?>" id="turma4">
                                                 <label for="confirmado">Negado</label>
                                             </div>
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class=" field">
-                                          
-
-                                        </div>
+                              
                                 
                             </div>
                         </div>

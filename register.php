@@ -394,15 +394,34 @@ if (!empty($_POST)){
 
             <?php }  ?>
             <hr class="ui dividing header">
+            
+            <div class="ui message">
+            <div class="header">
+  Atenção!
+  </div>
+            <ol class="ui list">Nos campos abaixo deve-se preencher os valores utilizando vírgula para separar reais de centavos, conforme exemplos:
+
+   
+      <li>Para o valor de seiscentos reais e cinquenta centavos, indicar 600,50</li>
+      <li>Para o valor de mil duzentos e doze reais, indicar 1212,00</li>
+  
+
+
+</ol>
+            </div>
+            <div class="ui alert">  </div>
+            <hr class="ui dividing header">
 
             <div class="field" id="turma">
                 <div class="two fields">
                     
-                    <div class="field">
-                        <label>Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa)</label>
-                        <input type="number" value="0000"  name="renda" min="0.01"  placeholder="Renda Familiar" required>
+                    <div class="field ">
+                        <label >Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa).</label>
+                        <input type="number" value="0000.00"  name="renda" min="0"  placeholder="Renda Familiar" required>
 
                     </div>
+
+                    
                     <div class="field">
                         <label>Quantas Pessoas Moram na Casa? </label>
                         <input type="number" name="membros" value='2' min="2" placeholder="Membros" required>
@@ -422,12 +441,12 @@ if (!empty($_POST)){
                     
                     <div class="field">
                         <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
-                        <input type="number" step="0.01" value='0' name="gasto_moradia" min="0.0" placeholder="Gasto com Moradia" required>
+                        <input type="number"  value="0000.00" name="gasto_moradia" min="0" placeholder="Gasto com Moradia" required>
 
                     </div>
                     <div class="field">
                         <label>Pagamento de Pensão Alimentícia</label>
-                        <input type="number" step="0.01" value='0' name="pagamento_pensao" min="0.0" placeholder="Pagamento Pensão" required>
+                        <input type="number" value="0000.00" name="pagamento_pensao" min="0" placeholder="Pagamento Pensão" required>
 
                     </div>
                 </div>

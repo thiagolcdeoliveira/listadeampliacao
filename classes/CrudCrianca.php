@@ -180,7 +180,7 @@ class CrudCrianca {
 			$crianca->setId($value["id"])->setNome($value["nome"])->setSobrenome($value["sobrenome"])->setTurma($value["turma"])->
 			setCei($value["cei"])->setHorarioAtual($value["horario_atual"])->setHorarioDesejado($value["horario_desejado"])->
 			setPagamentoPensao($value["pagamento_pensao"])->setGastoMoradia($value["gasto_moradia"])->setConfirmado($value["confirmado"])->setPerCapita($value["percapita"])->setCpf($value["cpf"])->setDataNasc($value["data_nasc"])->setEmail($value["endereco"])->
-			setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
+			setMotivoNegado($value["motivo_negado"])->setNomeResponsavel($value["nome_responsavel"])->setPeriodo(unserialize($value["periodo"]))->setTelefone($value["telefone"])->
 			setCodigo($value["codigo"])->setDataCad($value["data_cad"])->setStatus($value["ativo"]);
 			array_push($arraycrianca,$crianca);
 	    }
