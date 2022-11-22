@@ -399,7 +399,7 @@ if (!empty($_POST)){
             <div class="header">
   Atenção!
   </div>
-            <ol class="ui list">Nos campos abaixo deve-se preencher os valores utilizando vírgula para separar reais de centavos, conforme exemplos:
+            <ol class="ui list">Nos campos abaixo deve-se preencher os valores totais, utilizando vírgula para separar reais de centavos, conforme exemplos:
 
    
       <li>Para o valor de seiscentos reais e cinquenta centavos, indicar 600,50</li>
@@ -417,7 +417,7 @@ if (!empty($_POST)){
                     
                     <div class="field ">
                         <label >Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa).</label>
-                        <input type="number" value="0000.00"  name="renda" min="0"  placeholder="Renda Familiar" required>
+                        <input type="number" value="0000.00"  step="0.01" name="renda" min="0.00"  placeholder="Renda Familiar" required>
 
                     </div>
 
@@ -441,12 +441,12 @@ if (!empty($_POST)){
                     
                     <div class="field">
                         <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
-                        <input type="number"  value="0000.00" name="gasto_moradia" min="0" placeholder="Gasto com Moradia" required>
+                        <input type="number"  value="0000.00" step="0.01" name="gasto_moradia" min="0" placeholder="Gasto com Moradia" required>
 
                     </div>
                     <div class="field">
                         <label>Pagamento de Pensão Alimentícia</label>
-                        <input type="number" value="0000.00" name="pagamento_pensao" min="0" placeholder="Pagamento Pensão" required>
+                        <input type="number" value="0000.00" step="0.01" name="pagamento_pensao" min="0" placeholder="Pagamento Pensão" required>
 
                     </div>
                 </div>
