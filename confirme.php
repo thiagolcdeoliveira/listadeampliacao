@@ -46,6 +46,7 @@
                                 if ($renda_considerada < 0) {
                                     $renda_considerada = 0;
                                   }
+                                 
                                 $percapita =  $renda_considerada / $membros;
                                 $motivo_negado = "";
                                 $motivo_negado =  $_POST["motivo_negado"];
