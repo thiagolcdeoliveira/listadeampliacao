@@ -104,7 +104,13 @@
                                 <div class="field">
                                     
                                     <div class="five fields">
-                                        
+                                        <div class=" field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="confirmado" value="5" <?php if ($crianca->getConfirmado() == 5) { ?> checked <?php } ?>" id="turma4">
+                                                <label for="confirmado">Desistência</label>
+                                            </div>
+
+                                        </div>
                                         <div class=" field">
                                             <div class="ui radio checkbox">
                                                 <input type="radio" name="confirmado" value="0" <?php if ($crianca->getConfirmado() == 0) { ?> checked <?php } ?>" id="turma4">
