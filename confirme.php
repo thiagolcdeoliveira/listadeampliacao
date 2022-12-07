@@ -33,14 +33,20 @@
                     ) {
                         if ($_POST["membros"] > 0) {
                             $renda =  $_POST["renda"];
+                            if ($renda < 0 or $renda=="" ) {
+                                $renda = 0;
+                              }
+                            
                             $membros =  $_POST["membros"];
                             if ($_POST["confirmado"] != 2  or ($_POST["confirmado"] == 2 and  !empty($_POST['motivo_negado']))) {
                                 $pagamento_pensao = $_POST["pagamento_pensao"];
                                 $gasto_moradia = $_POST["gasto_moradia"];
+                                
                                 $renda_considerada = $renda -   ($gasto_moradia + $pagamento_pensao);   
                                 if ($renda_considerada < 0) {
                                     $renda_considerada = 0;
                                   }
+                                 
                                 $percapita =  $renda_considerada / $membros;
                                 $motivo_negado = "";
                                 $motivo_negado =  $_POST["motivo_negado"];
@@ -162,13 +168,13 @@
                     <div class="field">
                         <label>Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa)</label>
                         <input type="number" step="0.01" <?php if (!empty($crianca->getRenda())) { ?> value="<?php echo $crianca->getRenda();
-                                                                                                                    } ?>" name="renda" min="0.01" placeholder="Renda Familiar" required>
+                                                                                                                    } ?>" name="renda" min="0.01" placeholder="Renda Familiar" >
 
                     </div>
                     <div class="field">
                         <label>Quantas Pessoas Moram na Casa? </label>
                         <input type="number" name="membros" min="2"  <?php if (!empty($crianca->getMembros())) { ?> min=1 value="<?php echo $crianca->getMembros();
-                                                                                                                                }else{ echo " value='2'"; } ?>" placeholder="Membros" required>
+                                                                                                                                }else{ echo " value='2'"; } ?>" placeholder="Membros" >
 
                     </div>
                    
@@ -186,13 +192,13 @@
                     <div class="field">
                         <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
                         <input type="number" step="0.01" <?php if (!empty($crianca->getGastoMoradia())  and $crianca->getGastoMoradia() >= 0  ) { ?> value="<?php echo $crianca->getGastoMoradia();
-                                                                                                                    }else { echo "value='0'";} ?>"  name="gasto_moradia" min="0.0" placeholder="Gasto com Moradia" required>
+                                                                                                                    }else { echo "value='0'";} ?>"  name="gasto_moradia" min="0.0" placeholder="Gasto com Moradia" >
 
                     </div>
                     <div class="field">
                         <label>Pagamento de Pensão Alimentícia</label>
                         <input type="number" step="0.01" <?php if (!empty($crianca->getPagamentoPensao()) and $crianca->getPagamentoPensao() >= 0  ) { ?> value="<?php echo $crianca->getPagamentoPensao();
-                                                                                                                    }else { echo "value='0'";} ?>" name="pagamento_pensao" min="0.0" placeholder="Pagamento Pensão" required>
+                                                                                                                    }else { echo "value='0'";} ?>" name="pagamento_pensao" min="0.0" placeholder="Pagamento Pensão" >
 
                     </div>
                 </div>
