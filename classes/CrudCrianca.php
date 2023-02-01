@@ -161,15 +161,23 @@ class CrudCrianca {
 		   if ($data_inicio != 0){
 			
 			//$data_inicio = DateTime::createFromFormat('Y-m-d', $data_inicio);
-		   
+			$data_inicio = DateTime::createFromFormat('Y-m-d', $data_inicio);
+		   // $data_inicio = $data_inicio->format('Y-m-d');
 			
 			//$filtro = $filtro. " and data_cad >= DATE(". $data_inicio->format('d-m-Y').")";
-			$filtro = $filtro. " and data_cad >= '". $data_inicio." 00:00:00'";
+			$filtro = $filtro. " and data_cad >= '". $data_inicio->format('Y-m-d')." 00:00:00'";
+
+			//$filtro = $filtro. " and data_cad >= '". $data_inicio." 00:00:00'";
 		}
 			if ($data_fim != 0){
 				//$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
+				$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
+				//$data_fim = $data_fim->format('Y-m-d');
+
 				//$filtro = $filtro. " and data_cad <= DATE(". $data_fim->format('d-m-Y').")";
-				$filtro = $filtro. " and data_cad <= '". $data_fim."  59:59:59'";
+				$filtro = $filtro. " and data_cad <= '".  $data_fim->format('Y-m-d')."  59:59:59'";
+
+				//$filtro = $filtro. " and data_cad <= '". $data_fim."  59:59:59'";
 				
 		 }
 		}
@@ -184,7 +192,7 @@ class CrudCrianca {
 		ELSE 'erro' END as turma
         from crianca where ativo = 1 
 		 $filtro order by percapita";
-		//echo $sql;
+		echo $sql;
 		$stmt = $this->banco->prepare($sql);
 		$stmt->execute();
 		$arraycrianca = array();
