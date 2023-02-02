@@ -142,7 +142,8 @@
 <div class="ui large top fixed hidden menu ">
   <div class="ui container">
     <a class="item">Home</a>
-    <a class="item">Cadastro</a>
+    <a class="item" href="/2022/">Consulta 2022</a>
+    <a class="item" href="/2023/">Cadastro 2023</a>
 
     <a class="item">Portal da Educação</a>
     
@@ -161,8 +162,8 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
 <a class="item">Home</a>
-<a class="item" href="2022/">Consulta 2022</a>
-<a class="item" href="2023/">Cadastro 2023</a>
+<a class="item" href="/2022/">Consulta 2022</a>
+<a class="item" href="/2023/">Cadastro 2023</a>
 
     <a class="item">Portal da Educação</a>
 </div>
@@ -177,8 +178,8 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="item" href="2022/">Consulta 2022</a>
-<a class="item" href="2023/">Cadastro 2023</a>
+        <a class="item" href="/2022/">Consulta 2022</a>
+<a class="item" href="/2023/">Cadastro 2023</a>
      
         <a href="http://educacao.araquari.sc.gov.br" class="item">Portal da Educação</a>
        <!-- <div class="right item">

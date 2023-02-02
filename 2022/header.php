@@ -165,6 +165,8 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
   <div class="ui container">
     <a class="item">Home</a>
     <a class="item">Cadastro</a>
+    <a class="item" href="2022/">Consulta 2022</a>
+    <a class="item" href="2023/">Cadastro 2023</a>
 
     <a class="item">Portal da Educação</a>
     
@@ -184,6 +186,8 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
 <div class="ui vertical inverted sidebar menu">
 <a class="item">Home</a>
     <a class="item">Cadastro</a>
+    <a class="item" href="2022/">Consulta 2022</a>
+    <a class="item" href="2023/">Cadastro 2023</a>
 
     <a class="item">Portal da Educação</a>
 </div>
@@ -200,6 +204,9 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
         </a>
         <a href="?cei=<?php echo $cei_cod ?>" class="item active">Home</a>
        <!-- <a href="register.php?cei=<?php echo $cei_cod ?>" class="item">Cadastro</a>-->
+       <a class="item" href="/2022/">Consulta 2022</a>
+    <a class="item" href="/2023/">Cadastro 2023</a>
+
        <?php  if  (isset($_SESSION['u'])){ ?>
         <a href="lista_coordenacao.php?cei=<?php echo $cei_cod ?>" class="item">Lista Detalhada</a>
 
