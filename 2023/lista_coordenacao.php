@@ -23,7 +23,26 @@ $crud = new CrudCrianca($conn, $crianca1);
 			<h3> Filtro por Data</h3>
 			<h4 class="ui dividing header"> <?php echo $cei_nome;  ?></h4>
 
-			<div class="two fields">
+			<div class="four fields">
+			<div class="field">
+					<label>Horário Atual</label>
+					<Select  name="horario_atual">
+					<option value="0">Todos</option>
+					<option value="1">Matutino</option>
+					<option value="2">Vespetino</option>
+					</Select>
+				</div>
+				<div class="field">
+					<label>Horário Desejado</label>
+					<select  name="horario_desejado">
+
+					<option value="0">Todos</option>
+					<option value="1">7h às 15h</option>
+					<option value="2">8h às 16h</option>
+					<option value="3">9h às 17h</option>
+
+					</select>
+				</div>
 				<div class="field">
 					<label>Data Início da Inscrição</label>
 					<input type="Date" name="data_inicio" oninput="mascaradata(this)" placeholder="Data de Nascimento" required>
@@ -93,10 +112,26 @@ $crud = new CrudCrianca($conn, $crianca1);
 						$data_inicio = 0;
 						$data_fim = 0;
 					}
+
+					if (
+						array_key_exists('horario_desejado', $_GET) == 1 
+					) {
+						$horario_desejado = $_GET["horario_desejado"];
+					} else {
+						$horario_desejado = 0;
+					}
+
+					if (
+						array_key_exists('horario_atual', $_GET) == 1 
+					) {
+						$horario_atual = $_GET["horario_atual"];
+					} else {
+						$horario_atual = 0;
+					}
 					?>
 
 					<?php if (isset($_SESSION['u']) and isset($_SESSION['c'])) { ?>
-						<?php foreach ($crud->list($_SESSION['c'], $data_inicio, $data_fim) as $key => $value) {   ?>
+						<?php foreach ($crud->list($_SESSION['c'], $data_inicio, $data_fim, $horario_desejado, $horario_atual) as $key => $value) {   ?>
 
 
 							<tr>
@@ -127,7 +162,7 @@ $crud = new CrudCrianca($conn, $crianca1);
 
 													<?php } else {
 													if ($value->getConfirmado() == 4) { ?>
-														Aguardando Atualizar de Documentação
+														Refazer Cadastro
 
 													<?php   } else {
 

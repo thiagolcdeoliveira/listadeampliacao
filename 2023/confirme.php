@@ -101,8 +101,75 @@
             <form class="ui form" action="confirme.php?id=<?php if (!empty($id)) {
                                                                 echo $id;
                                                             } ?>" method="POST">
+
+<div class="ui accordion">
+  <div class="title active">
+
                 <h3 class="ui dividing header"><?php echo $crianca->getNome() . " " . $crianca->getSobreNome(); ?> -
-                    <?php echo $crianca->getAllCeis(); ?></h4>
+                    <?php echo $crianca->getAllCeis(); ?>    <i class="dropdown icon"></i>
+</h4>
+                    </div>
+  <div class="content">
+                    <table class="ui unstackable  table" style="margin-bottom: 2em;">
+  <thead>
+    <tr><th>Nome </th>
+    <th>Horário Atual</th>
+    <th>Horário Desejado</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td data-label="Name"><?php echo $crianca->getNome() . " " . $crianca->getSobreNome(); ?></td>
+      <td data-label="Atual">
+            <?php if ($crianca->getHorarioAtual() == 1) {  ?>
+					Matutino
+			<?php } else {
+					    if ($crianca->getHorarioAtual() == 2) { ?>
+							Vespetino
+						<?php } else {?>
+									erro
+								<?php	}
+                                 } ?>
+       </td>
+      <td data-label="Desejado">
+      <?php if ($crianca->getHorarioDesejado() == 1) {  ?>
+					7h às 15h
+			<?php } else {
+					    if ($crianca->getHorarioDesejado() == 2) { ?>
+							8h às 16h
+						<?php } else {   
+                            if ($crianca->getHorarioDesejado() == 3) { ?>
+                            
+                            9h às 17h
+                            <?php }else{?>
+                                    erro
+                           
+
+
+								<?php	 	}
+                                }
+                                 } ?>
+
+      
+      <?php //echo $crianca->getHorarioDesejado(); ?></td>
+    </tr>
+   
+  </tbody>
+  <thead>
+    <tr><th>CEI </th>
+    <th>Turma</th>
+    <th>Responsavel</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td data-label="Name"> <?php echo $crianca->getAllCeis(); ?></td>
+      <td data-label="Atual"><?php echo $crianca->getTurma(); ?></td>
+      <td data-label="Desejado"><?php echo $crianca->getNomeResponsavel(); ?></td>
+    </tr>
+   
+  </tbody>
+</table>
+  </div></div>
+
                     <div class="field">
                         <label></label>
                         <div class="field" id="turma">
@@ -134,7 +201,7 @@
                                         <div class=" field">
                                             <div class="ui radio checkbox">
                                                 <input type="radio" name="confirmado" value="4" <?php if ($crianca->getConfirmado() == 4) { ?> checked <?php } ?>" id="turma4">
-                                                <label for="confirmado">Aguardando Atualizar de Documentação</label>
+                                                <label for="confirmado">Refazer Cadastro</label>
                                             </div>
 
                                         </div>
@@ -250,7 +317,17 @@
         </div>
     </div>
 
+    
 
+
+
+
+<script>
+    $('.ui.accordion')
+  .accordion()
+;
+
+</script>
 
     <?php require_once "footer.php" ?>
 <?php } ?>

@@ -154,8 +154,8 @@ class CrudCrianca {
 
 
     
-	public function list($value=0,$data_inicio=0,$data_fim=0){
-		$filtro='';
+	public function list($value=0,$data_inicio=0,$data_fim=0,$horario_desejado=0,$horario_atual=0){
+		$filtro=' ';
 		if ($value > 0 ) {
            $filtro = " and cei=".$value;
 		   if ($data_inicio != 0){
@@ -168,18 +168,29 @@ class CrudCrianca {
 			$filtro = $filtro. " and data_cad >= '". $data_inicio->format('Y-m-d')." 00:00:00'";
 
 			//$filtro = $filtro. " and data_cad >= '". $data_inicio." 00:00:00'";
-		}
+			}
 			if ($data_fim != 0){
-				//$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
-				$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
-				//$data_fim = $data_fim->format('Y-m-d');
+					//$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
+					$data_fim = DateTime::createFromFormat('Y-m-d', $data_fim);
+					//$data_fim = $data_fim->format('Y-m-d');
 
-				//$filtro = $filtro. " and data_cad <= DATE(". $data_fim->format('d-m-Y').")";
-				$filtro = $filtro. " and data_cad <= '".  $data_fim->format('Y-m-d')."  59:59:59'";
+					//$filtro = $filtro. " and data_cad <= DATE(". $data_fim->format('d-m-Y').")";
+					//$filtro = $filtro. " and data_cad <= '".  $data_fim->format('Y-m-d')."  59:59:59'";
+					$filtro = $filtro. " and data_cad <= '".  $data_fim->format('Y-m-d')."  23:59:59'";
 
-				//$filtro = $filtro. " and data_cad <= '". $data_fim."  59:59:59'";
-				
-		 }
+					//$filtro = $filtro. " and data_cad <= '". $data_fim."  59:59:59'";
+					
+			}
+			if ($horario_desejado != 0){
+				$filtro = $filtro . " and horario_desejado = ". $horario_desejado;
+			}
+			if ($horario_atual != 0) {
+				$filtro = $filtro . " and horario_atual = ". $horario_atual;
+			}
+
+
+
+
 		}
 		$sql = "SELECT * FROM `crianca` ";
 		$sql = "select *, CASE turma
@@ -269,7 +280,15 @@ class CrudCrianca {
 	public function find(int $id){
 		//sei que não precisa validar. 
 		$id = filter_var($id, FILTER_VALIDATE_INT);
-		$sql = "SELECT * FROM `crianca` where id = :id";
+		$sql = "SELECT *, CASE turma
+		WHEN '5'     THEN     'Berçário 1'
+		WHEN '1'     THEN     'Berçário 2'
+		WHEN '2'     THEN     'Maternal'
+		WHEN '3'     THEN     'Jardim'
+		WHEN '4'     THEN     'Pré 1'
+		WHEN '0'     THEN     'Berçário 1'
+		ELSE 'erro' END as turma 
+		FROM `crianca` where id = :id";
 		$crianca = new Crianca();
 		$stmt = $this->banco->prepare($sql);
 		$stmt->bindValue(':id', $id);
