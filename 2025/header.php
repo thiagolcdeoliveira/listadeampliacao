@@ -168,6 +168,11 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
     <!--<a class="item" href="2022/">Consulta 2022</a>
     <a class="item" href="2023/">Consulta 2023</a>
   -->
+  <a class="item" href="/">Consulta</a>
+  <?php  if  (isset($_SESSION['u'])){ ?>
+        <a href="lista_coordenacao.php?cei=<?php echo $cei_cod ?>" class="item">Lista Detalhada</a>
+
+       <?php } ?>
     <a class="item">Portal da Educação</a>
     
 
@@ -187,6 +192,7 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
 <a class="item">Home</a>
     <a class="item" href="register.php?cei=<?php echo $cei_cod ?>">Cadastro</a>
    <!-- <a class="item" href="/2022/">Consulta 2022</a>-->
+   <a class="item" href="/">Consulta</a>
 
     <a class="item">Portal da Educação</a>
 </div>
@@ -207,6 +213,8 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
         <a href="lista_coordenacao.php?cei=<?php echo $cei_cod ?>" class="item">Lista Detalhada</a>
 
        <?php } ?>
+       <a class="item" href="/">Consulta</a>
+
       <!-- <a class="item" href="/2022/">Consulta 2022</a>-->
         <a href="http://educacao.araquari.sc.gov.br" class="item">Portal da Educação</a>
        <!-- <div class="right item">
