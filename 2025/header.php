@@ -207,8 +207,7 @@ if (!empty($_GET) and !empty($_GET["cei"])) {
         <a href="lista_coordenacao.php?cei=<?php echo $cei_cod ?>" class="item">Lista Detalhada</a>
 
        <?php } ?>
-       <a class="item" href="/2022/">Consulta 2022</a>
-
+      <!-- <a class="item" href="/2022/">Consulta 2022</a>-->
         <a href="http://educacao.araquari.sc.gov.br" class="item">Portal da Educação</a>
        <!-- <div class="right item">
           <a class="ui inverted button">Log in</a>
