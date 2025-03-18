@@ -31,7 +31,7 @@ echo "</pre>";
 				<tr>
 
 					<th>Data Inscrição</th>
-					<th>Renda Per Capita</th>
+					<!--<th>Renda Per Capita</th>-->
 
 					<th>Código</th>
 
@@ -47,7 +47,7 @@ echo "</pre>";
 				<tr>
 
 					<th>Data Inscrição</th>
-					<th>Renda Per Capita</th>
+				<!--	<th>Renda Per Capita</th>-->
 					<th>Código</th>
 					<th>Horário Atual</th>
 					<th>Horário Desejado</th>
@@ -71,7 +71,7 @@ echo "</pre>";
 					<tr>
 
 						<td><?php echo $value->getDataCad()  ?></td>
-						<td>R$ <?php echo $value->getPerCapita()  ?></td>
+						<!--<td>R$ <?php // echo $value->getPerCapita()  ?></td>-->
 						<td><?php echo $value->getCodigo()  ?></td>
 						<td><?php echo $value->getHorarioAtualDescricao()  ?></td>
 						<td><?php echo $value->getHorarioDesejadoDescricao()  ?></td>

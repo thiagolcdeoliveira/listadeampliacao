@@ -263,13 +263,13 @@ if (!empty($_POST)){
                             <label for="cei3" >Branca de Neve - Itinga (próx. Mercado Albino) </label>
                         </div>
                         </div>
-                        <div class="item">
+                        <!--<div class="item">
                         <div class="ui radio ">
                             <input type="radio" name="cei"  id="cei4"  value="3" >
                             <label for="cei4">Bruno de Magalhães - Itinga </label>
                         </div>
                         </div>
-                        <div class="item">
+                       <!-- <div class="item">
                         <div class="ui radio ">
                             <input type="radio" name="cei"  id="cei5"   value="4" >
                             <label for="cei5">Cantinho da Vovó Justina - Itinga (próx. Hipermais)</label>
@@ -280,24 +280,24 @@ if (!empty($_POST)){
                             <input type="radio" name="cei"   id="cei6"  value="5">
                             <label for="cei6">Cinderela - Centro </label>
                         </div>
-                        </div>
+                        </div>-->
                     </div>
                     </div>
                     <div class=" field">
                     <div class="ui relaxed divided list">
-                        <div class="item">
+                       <!-- <div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei"  id="cei7"  value="6" >
                             <label for="cei7" >Criança Bela - Itinga (próx. restaurante Gil)</label>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei"  id="cei8"  value="7">
                             <label for="cei8" >Heley de Abreu - Itinga (próx. Escola São Benedito)</label>
                             </div>
                         </div>
-                        <div class="item">
+                       <!--<div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei"  id="cei9"  value="8">
                             <label for="cei9">João Geraldo Correa - Itapocu</label>
@@ -314,6 +314,12 @@ if (!empty($_POST)){
                             <input type="radio" name="cei"  id="cei12"  value="11" >
                             <label for="cei12">João Luiz do Rosário - Corveta</label>
                             </div>
+                        </div>-->
+                        <div class="item">
+                        <div class="ui radio ">
+                            <input type="radio" name="cei"  id="cei4"  value="3" >
+                            <label for="cei4">Bruno de Magalhães - Itinga </label>
+                        </div>
                         </div>
                         </div>
                     </div>
@@ -330,30 +336,30 @@ if (!empty($_POST)){
                             <label for="cei13" >João Serafim -Barra do Itapocu</label>
                             </div>
                         </div>
-                        <div class="item">
+                        <!--<div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei" id="cei14"  value="13">
                             <label for="cei14" >Lindolpho José da Silva - Porto Grande</label>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei" id="cei15"  value="14">
                             <label for="cei15">Pequeno Anjo - Rainha</label>
                             </div>
                         </div>
-                        <div class="item">
+                       <!-- <div class="item">
                             <div class="ui radio ">
                             <input type="radio"name="cei" id="cei16"  value="15"   >
                             <label for="cei16">Pequeno Principe - Areias Pequenas</label>
                             </div>
-                        </div>
-                        <div class="item">
+                        </div>-->
+                        <!--<div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei" id="cei17"  value="16">
                             <label for="cei17">Professora Janaina - Itinga (próx. Escola São Benedito)</label>
                             </div>
-                        </div>
+                        </div>-->
                         </div>
                     </div>
                     
@@ -365,7 +371,7 @@ if (!empty($_POST)){
                             <label for="cei18" >Marise Travasso - Itinga (próx. Escola Jablonsky)</label>
                             </div>
                         </div>
-                        <div class="item">
+                       <!-- <div class="item">
                             <div class="ui radio ">
                             <input type="radio" name="cei" id="cei19"  value="18">
                             <label for="cei19" >Santo Antônio - Itinga (próx. Campo do Perna)</label>
@@ -382,14 +388,20 @@ if (!empty($_POST)){
                             <input type="radio" name="cei" id="cei21" value="20" >
                             <label for="cei21"> Vovó Maria de Lurdes Max - Icaraí (próx. IFC)</label>
                             </div>
-                        </div>
+                        </div>-->
                         
                         </div>
                     </div>
                     </div>
                 </div>
+
+
+
                 </div>
             </div>
+
+         
+
 
 
             <?php }  ?>
