@@ -6,7 +6,16 @@
 
 <div class="ui vertical stripe segment">
     <div class="ui grid container  ">
+<?php 
+// Get a key from https://www.google.com/recaptcha/admin/create
 
+$publicKey = '6LeApEMrAAAAAH6ws7B-foHQtFurUAKAx85-fBtf';
+$secretKey = '6LeApEMrAAAAAEuy1TaS0DdT5kw8QxuIQcuXINpY';
+if(!empty($_POST['g-recaptcha-response']) ){
+    $RetornaCaptcha = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secretKey . '&response=' . $_POST['g-recaptcha-response']));
+    if($RetornaCaptcha->success){
+   ?>  
+   
 
         <?php 
 $conn = Container::getBanco();
@@ -63,6 +72,11 @@ if (!empty($_POST)){
     }else {
     $erro = 1;}
   }
+
+  //Recaptcha
+  }
+}
+  //----
 ?>
 
         <?php   if  (!empty($id)) {?>
@@ -481,6 +495,15 @@ if (!empty($_POST)){
                 </div>
             </div>
 
+            <!-- Recaptcha -->
+            <div class="field" id="captcha">
+                <div class="field">
+                        
+                     <div class="g-recaptcha" data-sitekey="<?php echo $publicKey; ?>"></div>
+
+                </div>
+            </div>
+            <!-- Recaptcha -->
 
             <div class="ui buttons fluid  ">
               <!--  <div class="ui active inverted dimmer segment">
@@ -518,5 +541,6 @@ $(formID).submit(function(event){
 
 
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>      
 
 <?php require_once "footer.php" ?>
