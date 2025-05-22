@@ -21,7 +21,7 @@ if(!empty($_POST['g-recaptcha-response']) ){
 $conn = Container::getBanco();
 require_once "envia_email.php";
 
-if (!empty($_POST)){
+    if (!empty($_POST)){
       if( array_key_exists('turma', $_POST ) == 1 and 
            array_key_exists('cei', $_POST ) == 1  and 
            array_key_exists('nome', $_POST ) == 1  and 
@@ -36,46 +36,73 @@ if (!empty($_POST)){
            array_key_exists('endereco', $_POST ) == 1  
            ) ){
             if($_POST["membros"]>0){
-            $nome = $_POST["nome"];
-          $sobrenome = $_POST["sobrenome"]; 
-          $turma = $_POST["turma"];
-          $cei =  $_POST["cei"];
-          $cpf = $_POST["cpf"];
-          $data_nasc = $_POST["data_nasc"];
-          $renda = $_POST["renda"];
-          $pagamento_pensao = $_POST["pagamento_pensao"];
-          $gasto_moradia = $_POST["gasto_moradia"];
-          $membros = $_POST["membros"];
-          $horario_atual = $_POST["horarioAtual"];
-          $horario_desejado = $_POST["horarioDesejado"];
-          
-          $renda_considerada = $renda  -   ($gasto_moradia + $pagamento_pensao);   
-          if ($renda_considerada < 0) {
-            $renda_considerada = 0;
-          }
-          $percapita = $renda_considerada /  $membros;
-         // $email = $_POST["email"];
-          $endereco = $_POST["endereco"];
-          $nome_resposanvel = $_POST["nome_responsavel"];
-      if (!empty($nome) and !empty($sobrenome) and !empty($turma) and !empty($cei) and  !empty($cpf)) {
-          $crianca1 = new Crianca;
-          $crianca1->setNome($nome)->setSobrenome($sobrenome)->setTurma($turma)->setCei($cei)->
-          setCpf($cpf)->setPagamentoPensao($pagamento_pensao)->setGastoMoradia($gasto_moradia)->setRenda($renda)->setMembros($membros)->setDataNasc($data_nasc)->setNomeResponsavel($nome_resposanvel)->
-          setEndereco($endereco)->setHorarioAtual($horario_atual)->setHorarioDesejado($horario_desejado)->setPerCapita($percapita)->
-          setCodigoGerar();
-          $crianca = new CrudCrianca($conn, $crianca1);
-          $id = $crianca->save();
-         // EnviaEmail($crianca1);  
-      }
-        }
+                $nome = $_POST["nome"];
+                $sobrenome = $_POST["sobrenome"]; 
+                $turma = $_POST["turma"];
+                $cei =  $_POST["cei"];
+                $cpf = $_POST["cpf"];
+                $data_nasc = $_POST["data_nasc"];
+                $renda = $_POST["renda"];
+                $pagamento_pensao = $_POST["pagamento_pensao"];
+                $gasto_moradia = $_POST["gasto_moradia"];
+                $membros = $_POST["membros"];
+                $horario_atual = $_POST["horarioAtual"];
+                $horario_desejado = $_POST["horarioDesejado"];
+                
+                $renda = str_replace(['.', ','], ['', '.'], $renda);
+                $renda = floatval($renda);
+                
+                $pagamento_pensao = str_replace(['.', ','], ['', '.'], $pagamento_pensao);
+                $pagamento_pensao = floatval($pagamento_pensao);
+
+                $gasto_moradia = str_replace(['.', ','], ['', '.'], $gasto_moradia);
+                $gasto_moradia = floatval($gasto_moradia);
+
+                $renda_considerada = $renda  -   ($gasto_moradia + $pagamento_pensao);   
+                if ($renda_considerada < 0) {
+                    $renda_considerada = 0;
+                }
+                $percapita = $renda_considerada /  $membros;
+                // $email = $_POST["email"];
+                $endereco = $_POST["endereco"];
+                $nome_resposanvel = $_POST["nome_responsavel"];
+                
+                if (!empty($nome) and !empty($sobrenome) and !empty($turma) and !empty($cei) and  !empty($cpf)) {
+                    $crianca1 = new Crianca;
+                    $crianca1->setNome($nome)->setSobrenome($sobrenome)->setTurma($turma)->setCei($cei)->
+                    setCpf($cpf)->setPagamentoPensao($pagamento_pensao)->setGastoMoradia($gasto_moradia)->setRenda($renda)->setMembros($membros)->setDataNasc($data_nasc)->setNomeResponsavel($nome_resposanvel)->
+                    setEndereco($endereco)->setHorarioAtual($horario_atual)->setHorarioDesejado($horario_desejado)->setPerCapita($percapita)->
+                    setCodigoGerar();
+                    $crianca = new CrudCrianca($conn, $crianca1);
+                    $id = $crianca->save();
+                    // EnviaEmail($crianca1);  
+                }else{
+                    $erro = 2;
+                }
+            }else {
+                $erro = 3;
+                
+            }
       
-    }else {
-    $erro = 1;}
-  }
+        }else {
+            $erro = 1;
+        }
+    }
 
   //Recaptcha
+
   }
 }
+
+else {
+
+
+  }
+
+  
+
+
+
   //----
 ?>
 
@@ -95,14 +122,24 @@ if (!empty($_POST)){
           </div>
         <?php   } 
         
-        else { if (!empty($erro)){?>
+        else { if (!empty($_POST)){?>
           <div class="ui message danger">
               <div class="header">
                   Cadastro não realizado
               </div>
               <ul class="list">
                   <p class="">Dados Obrigatorios Ficaram Falatando, Por favor preencha todos os campos. </span>
-              </ul>
+                  <?php if ($erro=1){ 
+                   echo "Código de Erro: 2025421"; 
+                  }elseif($erro=2){
+                    echo "Código de Erro: 2025422"; 
+                  }elseif($erro=3){
+                    echo "Código de Erro: 2025423"; 
+                  }else{
+                    echo "Código de Erro: 2025424"; 
+                  }
+                 ?>
+                </ul>
           </div>
           <?php  }
           }?>
@@ -119,7 +156,7 @@ if (!empty($_POST)){
                         <input type="text" name="nome" placeholder="Nome da Criança" required>
                     </div>
                     <div class="field">
-                        <input type="text" name="sobrenome" placeholder="Sobrenome da Criança" required>
+                        <input type="text" name="sobrenome" required> placeholder="Sobrenome da Criança" >
                     </div>
                 </div>
             </div>
@@ -443,7 +480,7 @@ if (!empty($_POST)){
                     
                     <div class="field ">
                         <label >Renda Familiar (Soma da renda de todas as pessoas que moram na mesma casa).</label>
-                        <input type="text" onkeyup="maskMoney(event)" placeholder="0.000,00"  step="0.01" name="renda" min="0.00"  placeholder="Renda Familiar" required>
+                        <input type="text"  id="valorfamilia" placeholder="0,00"  step="0.01" name="renda" min="0.00"  placeholder="Renda Familiar" required>
 
                     </div>
 
@@ -467,12 +504,12 @@ if (!empty($_POST)){
                     
                     <div class="field">
                         <label>Gastos com Moradia (aluguel ou financiamento do primeiro imóvel, onde mora atualmente)</label>
-                        <input type="text" onkeyup="maskMoney(event)" placeholder="0.000,00" step="0.01" name="gasto_moradia" min="0" placeholder="Gasto com Moradia" required>
-
+                        <input type="text" id="valormoradia"  placeholder="0,00" step="0.01" name="gasto_moradia" min="0" placeholder="Gasto com Moradia" required>
+                        
                     </div>
                     <div class="field">
                         <label>Pagamento de Pensão Alimentícia</label>
-                        <input type="text" onkeyup="maskMoney(event)" placeholder="0.000,00" step="0.01" name="pagamento_pensao" min="0" placeholder="Pagamento Pensão" required>
+                        <input type="text" id="valorpensao"  placeholder="0,00" step="0.01" name="pagamento_pensao" min="0" placeholder="Pagamento Pensão" required>
 
                     </div>
                 </div>
@@ -542,5 +579,34 @@ $(formID).submit(function(event){
 
 </script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>      
+
+
+<script>
+  const input1 = document.getElementById('valormoradia');
+  const input2 = document.getElementById('valorpensao');
+  const input3 = document.getElementById('valorfamilia');
+  valor(input1);
+  valor(input2);
+    valor(input3);
+
+  function valor(input){
+  // Bloqueia qualquer caractere que não seja número ou controle
+  input.addEventListener('keydown', function (e) {
+    const permitido = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+    if (!e.key.match(/[0-9]/) && !permitido.includes(e.key)) {
+      e.preventDefault();
+    }
+  });
+
+  // Formata o número em estilo brasileiro (1.234,56)
+  input.addEventListener('input', () => {
+    let valor = input.value.replace(/\D/g, '');
+    valor = (valor / 100).toFixed(2) + '';
+    valor = valor.replace('.', ',');
+    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    input.value = valor;
+  });
+}
+</script>
 
 <?php require_once "footer.php" ?>
