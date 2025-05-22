@@ -156,7 +156,7 @@ else {
                         <input type="text" name="nome" placeholder="Nome da Criança" required>
                     </div>
                     <div class="field">
-                        <input type="text" name="sobrenome" required> placeholder="Sobrenome da Criança" >
+                        <input type="text" name="sobrenome" required placeholder="Sobrenome da Criança" >
                     </div>
                 </div>
             </div>
