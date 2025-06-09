@@ -439,6 +439,9 @@ class Crianca implements InterfaceCrianca {
 					case 19:
 						$cei =  "Vovó Brandina";
 						break;
+					case 21:
+						$cei =  "Vovó Justina";
+						break;
 					case 20:
 						$cei =  "Vovó Maria de Lurdes Max";
 						break;
