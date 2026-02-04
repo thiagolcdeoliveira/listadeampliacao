@@ -1,5 +1,5 @@
 <?php 
-header("Location: /2025/ ");
+header("Location: /2026/ ");
 exit();
 
 require_once "header.php" ?>

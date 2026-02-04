@@ -1,0 +1,25 @@
+.bg-my-register-image {
+    background: url("../img/logo.png");
+    background-position: center;
+    background-size: cover;
+  }
+  .bg-my-login-image {
+    background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+    background-position: center;
+    background-size: cover;
+  }
+
+
+.backgroud-banner {
+    background: url("../img/banner.jpg") !important;
+    background-position: center !important;
+    background-size: cover !important;
+    min-height: 400px  !important;
+  }
+.sem-top{
+
+  margin-top: 1em  !important;
+}
+
+.text-banner{
+  color:#919ca8 !important;}
